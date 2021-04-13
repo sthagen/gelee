@@ -1,44 +1,30 @@
-SHELL = /bin/bash
-package = shagen/marmelade
-
-.PHONY: all available
-all: ; $(info $$var is [${var}])echo Hello world
-	@echo "usage: "
-	@echo "       make clean - removes output files"
-	@echo "       make image - builds container image"
-	@echo "       make available - push container image to docker hub"
-
-clean:
-	@echo "- removing output files"
-	@rm -f *.log
-
-image:
-	@echo "- building container image"
-	set -e ;\
-	RND_SEED=$$(openssl rand -base64 48) ;\
-	BUILD_TS=$$(date -u +'%Y-%m-%dT%H:%M:%SZ') ;\
-	REVISION=$$(git rev-parse --verify HEAD) ;\
-	VERSION=$$(grep version setup.py | cut -f2 -d'"') ;\
-	echo $$RND_SEED $$BUILD_TS ;\
-	docker build \
-	--no-cache \
-	--build-arg BUILD_TS=$$BUILD_TS \
-	--build-arg REVISION=$$REVISION \
-	--build-arg VERSION=$$VERSION \
-	--tag $(package) . ;\
-
-	@echo "Result: $$(docker inspect -f \
-	'version={{index .Config.Labels "org.opencontainers.image.version"}}\
-	timestamp={{index .Config.Labels "org.opencontainers.image.created"}}\
-	revision=sha1:{{index .Config.Labels "org.opencontainers.image.revision"}}' \
-	$(package))" ;\
-
-available:
-	@echo "- publishing container image on hub.docker.com"
-	@echo " + docker inspect says:"
-	@echo "   $$(docker inspect -f \
-	'version={{index .Config.Labels "org.opencontainers.image.version"}}\
-	timestamp={{index .Config.Labels "org.opencontainers.image.created"}}\
-	revision=sha1:{{index .Config.Labels "org.opencontainers.image.revision"}}' \
-	$(package))" ;\
-	docker push $(package) ;\
+FROM python:3.9.2-slim-buster
+RUN export DEBIAN_FRONTEND=noninteractive && \
+apt-get update && \
+apt-get -y upgrade && \
+apt-get install -y --no-install-recommends tini && \
+apt-get -y clean && \
+    rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY requirements.txt /app
+RUN pip install --upgrade --no-cache-dir pip && pip install --no-cache-dir -r requirements.txt
+RUN useradd --create-home action
+USER action
+COPY marmelade /app/marmelade
+ENV PYTHONFAULTHANDLER=1
+ENTRYPOINT ["tini", "--", "python", "-m", "marmelade"]
+ARG BUILD_TS
+ARG REVISION
+ARG VERSION
+LABEL org.opencontainers.image.created=$BUILD_TS \
+    org.opencontainers.image.authors="Stefan Hagen <mailto:stefan@hagen.link>" \
+    org.opencontainers.image.url="https://hub.docker.com/repository/docker/shagen/solid-umbrella/" \
+    org.opencontainers.image.documentation="https://sthagen.github.io/solid-umbrella/" \
+    org.opencontainers.image.source="https://github.com/sthagen/solid-umbrella/" \
+    org.opencontainers.image.version=$VERSION \
+    org.opencontainers.image.revision=$REVISION \
+    org.opencontainers.image.vendor="Stefan Hagen <mailto:stefan@hagen.link>" \
+    org.opencontainers.image.licenses="MIT License" \
+    org.opencontainers.image.ref.name="shagen/marmelade" \
+    org.opencontainers.image.title="marmelade." \
+    org.opencontainers.image.description="Configuration file format validator."
