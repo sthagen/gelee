@@ -14,7 +14,7 @@ from lxml import etree  # type: ignore
 
 ENCODING = "utf-8"
 
-APP = 'marmelade'
+APP = 'gelee'
 
 LOG = logging.getLogger()  # Temporary refactoring: module level logger
 LOG_FOLDER = pathlib.Path('logs')
@@ -52,7 +52,7 @@ def main(argv=None, embedded=False, debug=None):
     init_logger(level=logging.DEBUG if debug else None)
     argv = argv if argv else sys.argv[1:]
     if not argv:
-        print("Usage: marmelade paths-to-files")
+        print("Usage: gelee paths-to-files")
         return 0
     num_args = len(argv)
     LOG.debug(f"guarded dispatch {argv=}, {num_args=}")
