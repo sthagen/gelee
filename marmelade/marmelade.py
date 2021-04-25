@@ -37,12 +37,18 @@ def init_logger(name=None, level=None):
     LOG = logging.getLogger(APP if name is None else name)
 
 
+def visit(tree):
+    """Visit tree and yield the leaves."""
+    for path in pathlib.Path(tree).rglob("*"):
+        yield path
+
+
 def main(argv=None, embedded=False, debug=None):
     """Drive the validator.
     This function acts as the command line interface backend.
     There is some duplication to support testability.
     """
-    debug = DEBUG if debug is None else debug is True  # debug is None and DEBUG or debug is True
+    debug = debug is not None
     init_logger(level=logging.DEBUG if debug else None)
     argv = argv if argv else sys.argv[1:]
     if not argv:
@@ -50,5 +56,8 @@ def main(argv=None, embedded=False, debug=None):
         return 0
     num_args = len(argv)
     LOG.debug(f"guarded dispatch {argv=}, {num_args=}")
+    for tree in argv:
+        for path in visit(tree):
+            print(path)
     return 0
 
