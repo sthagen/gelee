@@ -6,7 +6,7 @@ import pathlib
 import os
 import sys
 
-import marmelade.marmelade as lint
+import gelee.gelee as lint
 
 DEBUG_VAR = "MARMELADE_DEBUG"
 DEBUG = bool(os.getenv(DEBUG_VAR))
