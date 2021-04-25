@@ -26,5 +26,5 @@ LABEL org.opencontainers.image.created=$BUILD_TS \
     org.opencontainers.image.vendor="Stefan Hagen <mailto:stefan@hagen.link>" \
     org.opencontainers.image.licenses="MIT License" \
     org.opencontainers.image.ref.name="shagen/gelee" \
-    org.opencontainers.image.title="Gelee - a finder confiture." \
+    org.opencontainers.image.title="Gelee - a finer confiture." \
     org.opencontainers.image.description="Configuration file format validator."
