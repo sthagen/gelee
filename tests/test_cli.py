@@ -20,3 +20,11 @@ def test_main_ok_tests_fixtures_arg(capsys):
     assert "usage" not in out.lower()
     assert "tests/fixtures/" in out.lower()
     assert not err
+
+
+def test_main_nok_bad_arg(capsys):
+    with pytest.raises(SystemExit, match="2"):
+        cli.main(["non-existing-thing"], debug=False)
+    out, err = capsys.readouterr()
+    assert "error" in out.lower()
+    assert not err
