@@ -6,3 +6,4 @@ Configuration linter for typical formats.
 
 Experimental.
 
+**Note**: The default branch is `default`.
