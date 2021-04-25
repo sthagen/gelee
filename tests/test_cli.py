@@ -12,3 +12,11 @@ def test_main_ok_no_args(capsys):
     out, err = capsys.readouterr()
     assert "usage" in out.lower()
     assert not err
+
+
+def test_main_ok_tests_fixtures_arg(capsys):
+    assert cli.main(["tests/fixtures/"], debug=False) == 0
+    out, err = capsys.readouterr()
+    assert "usage" not in out.lower()
+    assert "tests/fixtures/" in out.lower()
+    assert not err
