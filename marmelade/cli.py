@@ -21,7 +21,7 @@ def main(argv=None, debug=None):
     argv = sys.argv[1:] if argv is None else argv
     debug = debug if debug else DEBUG
     for arg in argv:
-        if not pathlib.Path(arg).is_file() or not pathlib.Path(arg).is_dir():
+        if not pathlib.Path(arg).is_file() and not pathlib.Path(arg).is_dir():
             print("ERROR: For now only paths understood.")
             sys.exit(2)
 
