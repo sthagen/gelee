@@ -4,7 +4,7 @@ import pathlib
 
 import pytest  # type: ignore
 
-import marmelade.cli as cli
+import gelee.cli as cli
 
 
 def test_main_ok_no_args(capsys):
