@@ -17,7 +17,7 @@ README += (HERE / "docs" / "changes.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="marmelade",
+    name="gelee",
     version="0.0.1",
     description="Configuration format validator for CSV, INI, JSON, TOML, XML, and YAML.",
     long_description=README,
@@ -47,7 +47,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "marmelade=marmelade.cli:main",
+            "gelee=gelee.cli:main",
         ]
     },
 )
