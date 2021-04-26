@@ -8,7 +8,7 @@ import sys
 
 import gelee.gelee as lint
 
-DEBUG_VAR = "MARMELADE_DEBUG"
+DEBUG_VAR = "GELEE_DEBUG"
 DEBUG = bool(os.getenv(DEBUG_VAR))
 
 
