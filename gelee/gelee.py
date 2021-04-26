@@ -5,14 +5,12 @@ import configparser
 import csv
 import json
 import logging
-import os
 import pathlib
 import sys
-import toml
-import typing
 
 import jsonschema  # type: ignore
 from lxml import etree  # type: ignore
+import toml
 
 
 ENCODING = "utf-8"
@@ -225,4 +223,3 @@ def main(argv=None, embedded=False, debug=None):
     print("OK")
 
     return 0, ""
-
