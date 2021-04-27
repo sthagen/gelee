@@ -96,7 +96,7 @@ def main(argv=None, embedded=False, debug=None):
                 folders += 1
                 continue
 
-            final_suffix = path.suffixes[-1].lower()
+            final_suffix = '' if not path.suffixes else path.suffixes[-1].lower()
 
             if final_suffix == ".csv":
                 csvs += 1
