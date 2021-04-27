@@ -25,4 +25,5 @@ def main(argv=None, debug=None):
             print("ERROR: For now only paths understood.")
             sys.exit(2)
 
-    return lint.main(argv, debug=debug)
+    code, _ = lint.main(argv, debug=debug)
+    return code
