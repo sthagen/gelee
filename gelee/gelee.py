@@ -79,7 +79,12 @@ def visit(tree):
         yield path
 
 
-def main(argv=None, embedded=False, debug=None):
+def slugify(error):
+    """Replace newlines by space."""
+    return str(error).replace('\n', '')
+
+
+def main(argv=None, abort=False, debug=None):
     """Drive the validator.
     This function acts as the command line interface backend.
     There is some duplication to support testability.
@@ -95,8 +100,9 @@ def main(argv=None, embedded=False, debug=None):
     LOG.info(
         f"Starting validation visiting a forest with {num_trees} tree{'' if num_trees == 1 else 's'}"
     )
-
+    failure_path_reason = "Failed validation for path %s with error: %s"
     total, folders, ignored, csvs, inis, jsons, tomls, xmls, yamls = 0, 0, 0, 0, 0, 0, 0, 0, 0
+    failures = 0
     for tree in forest:
         for path in visit(tree):
             LOG.debug(f" - {path=}, {total=}")
@@ -108,77 +114,131 @@ def main(argv=None, embedded=False, debug=None):
             final_suffix = '' if not path.suffixes else path.suffixes[-1].lower()
 
             if final_suffix == ".csv":
-                csvs += 1
                 with open(path, newline='') as handle:
                     try:
-                        dialect = csv.Sniffer().sniff(handle.read(1024), ",\t; ")
-                        handle.seek(0)
-                    except csv.Error as err:
-                        if "could not determine delimiter" in str(err).lower():
-                            dialect = csv.Dialect()
-                            dialect.delimiter = ','
-                            dialect.quoting = csv.QUOTE_NONE
-                            dialect.strict = True
-                        else:
+                        try:
+                            dialect = csv.Sniffer().sniff(handle.read(1024), ",\t; ")
+                            handle.seek(0)
+                        except csv.Error as err:
+                            if "could not determine delimiter" in str(err).lower():
+                                dialect = csv.Dialect()
+                                dialect.delimiter = ','
+                                dialect.quoting = csv.QUOTE_NONE
+                                dialect.strict = True
+                            else:
+                                LOG.error(failure_path_reason, path, slugify(err))
+                                if abort:
+                                    return 1, str(err)
+                                failures += 1
+                        try:
+                            reader = csv.reader(handle, dialect)
+                            for _ in reader:
+                                pass
+                            csvs += 1
+                        except csv.Error as err:
+                            LOG.error(failure_path_reason, path, slugify(err))
+                            if abort:
+                                return 1, str(err)
+                            failures += 1
+                    except (Exception, csv.Error) as err:
+                        LOG.error(failure_path_reason, path, slugify(err))
+                        if abort:
                             return 1, str(err)
-                    try:
-                        reader = csv.reader(handle, dialect)
-                        for _ in reader:
-                            pass
-                    except csv.Error as err:
-                        return 1, str(err)
+                        failures += 1
             elif final_suffix == ".ini":
-                inis += 1
                 config = configparser.ConfigParser()
                 try:
                     config.read(path)
+                    inis += 1
                 except configparser.NoSectionError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.DuplicateSectionError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.DuplicateOptionError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.NoOptionError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.InterpolationDepthError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.InterpolationMissingOptionError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.InterpolationSyntaxError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.InterpolationError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.MissingSectionHeaderError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
                 except configparser.ParsingError as err:
-                    return 1, str(err)
+                    LOG.error(failure_path_reason, path, slugify(err))
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
             elif final_suffix in (".geojson", ".json"):
-                jsons += 1
                 with open(path, "rt", encoding="utf-8") as handle:
                     try:
                         _ = json.load(handle)
+                        jsons += 1
                     except Exception as err:
-                        return 1, str(err)
+                        LOG.error(failure_path_reason, path, slugify(err))
+                        if abort:
+                            return 1, str(err)
+                        failures += 1
             elif final_suffix == ".toml":
-                tomls += 1
                 with open(path, "rt", encoding="utf-8") as handle:
                     try:
                         _ = toml.load(handle)
+                        tomls += 1
                     except Exception as err:
-                        return 1, str(err)
+                        LOG.error(failure_path_reason, path, slugify(err))
+                        if abort:
+                            return 1, str(err)
+                        failures += 1
             elif final_suffix == ".xml":
-                xmls += 1
                 xml_tree, message = load_xml(path)
-                if not xml_tree:
-                    LOG.error(message)
-                    return 1, "ERROR"
+                if xml_tree:
+                    xmls += 1
+                else:
+                    LOG.error(failure_path_reason, path, slugify(message))
+                    if abort:
+                        return 1, str(message)
+                    failures += 1
             elif final_suffix in (".yaml", ".yml"):
-                yamls += 1
                 with open(path, "rt", encoding="utf-8") as handle:
                     try:
                         _ = load_yaml(handle, Loader=LoaderYaml)
+                        yamls += 1
                     except Exception as err:
-                        return 1, str(err)
+                        LOG.error(failure_path_reason, path, slugify(err))
+                        if abort:
+                            return 1, str(err)
+                        failures += 1
             else:
                 ignored += 1
                 continue
@@ -200,10 +260,10 @@ def main(argv=None, embedded=False, debug=None):
     configs = csvs + inis + jsons + tomls + xmls + yamls
     LOG.info(
         f"Finished validation of {configs} configuration file{'' if configs == 1 else 's'}"
-        f" visiting {total} paths"
+        f" with {failures} failure{'' if failures == 1 else 's'} visiting {total} paths"
         f" (ignored {ignored} non-config file{'' if ignored == 1 else 's'}"
         f" in {folders} folder{'' if folders == 1 else 's'})"
     )
-    print("OK")
+    print(f"{'OK' if not failures else 'FAIL'}")
 
     return 0, ""
