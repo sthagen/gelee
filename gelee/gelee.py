@@ -11,7 +11,11 @@ import sys
 import jsonschema  # type: ignore
 from lxml import etree  # type: ignore
 import toml
-
+from yaml import load as load_yaml
+try:
+    from yaml import CLoader as LoaderYaml
+except ImportError:
+    from yaml import Loader as LoaderYaml
 
 ENCODING = "utf-8"
 
@@ -84,10 +88,10 @@ def main(argv=None, embedded=False, debug=None):
     forest = argv if argv else sys.argv[1:]
     if not forest:
         print("Usage: gelee paths-to-files")
-        return 0
+        return 0, "USAGE"
     num_trees = len(forest)
     LOG.debug(f"Guarded dispatch {forest=}, {num_trees=}")
-    total, folders, ignored, csvs, inis, jsons, tomls, xmls = 0, 0, 0, 0, 0, 0, 0, 0
+    total, folders, ignored, csvs, inis, jsons, tomls, xmls, yamls = 0, 0, 0, 0, 0, 0, 0, 0, 0
     for tree in forest:
         for path in visit(tree):
             LOG.debug(f" - {path=}, {total=}")
@@ -163,63 +167,43 @@ def main(argv=None, embedded=False, debug=None):
                 if not xml_tree:
                     LOG.error(message)
                     return 1, "ERROR"
+            elif final_suffix in (".yaml", ".yml"):
+                yamls += 1
+                with open(path, "rt", encoding="utf-8") as handle:
+                    try:
+                        _ = load_yaml(handle, Loader=LoaderYaml)
+                    except Exception as err:
+                        return 1, str(err)
             else:
                 ignored += 1
                 continue
 
     if csvs:
         LOG.info(
-            "Validated %d total CSV file%s in %d folder%s (ignored %d non-config file%s)",
-            csvs,
-            "" if csvs == 1 else "s",
-            folders,
-            "" if folders == 1 else "s",
-            ignored,
-            "" if ignored == 1 else "s",
-        )
+            "Validated %d total CSV file%s.", csvs, "" if csvs == 1 else "s")
     if inis:
         LOG.info(
-            "Validated %d total INI file%s in %d folder%s (ignored %d non-config file%s)",
-            inis,
-            "" if inis == 1 else "s",
-            folders,
-            "" if folders == 1 else "s",
-            ignored,
-            "" if ignored == 1 else "s",
-        )
+            "Validated %d total INI file%s.", inis, "" if inis == 1 else "s")
     if jsons:
         LOG.info(
-            "Validated %d total JSON file%s in %d folder%s (ignored %d non-config file%s)",
-            jsons,
-            "" if jsons == 1 else "s",
-            folders,
-            "" if folders == 1 else "s",
-            ignored,
-            "" if ignored == 1 else "s",
-        )
+            "Validated %d total JSON file%s.", jsons, "" if jsons == 1 else "s")
     if tomls:
         LOG.info(
-            "Validated %d total TOML file%s in %d folder%s (ignored %d non-config file%s)",
-            tomls,
-            "" if tomls == 1 else "s",
-            folders,
-            "" if folders == 1 else "s",
-            ignored,
-            "" if ignored == 1 else "s",
-        )
+            "Validated %d total TOML file%s.", tomls, "" if tomls == 1 else "s")
     if xmls:
         LOG.info(
-            "Validated %d total XML file%s in %d folder%s (ignored %d non-config file%s)",
-            xmls,
-            "" if xmls == 1 else "s",
-            folders,
-            "" if folders == 1 else "s",
-            ignored,
-            "" if ignored == 1 else "s",
-        )
+            "Validated %d total XML file%s.", xmls, "" if xmls == 1 else "s")
+    if yamls:
+        LOG.info(
+            "Validated %d total YAML file%s.", yamls, "" if yamls == 1 else "s")
 
-    configs = csvs + inis + jsons + tomls + xmls
-    LOG.info(f"Finished validation of {configs} configuration files visited {total} paths")
+    configs = csvs + inis + jsons + tomls + xmls + yamls
+    LOG.info(
+        f"Finished validation of {configs} configuration file{'' if configs == 1 else 's'}"
+        f" visiting {total} paths"
+        f" (ignored {ignored} non-config file{'' if ignored == 1 else 's'}"
+        f" in {folders} folder{'' if folders == 1 else 's'})"
+    )
     print("OK")
 
     return 0, ""
