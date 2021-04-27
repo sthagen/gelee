@@ -33,8 +33,8 @@ def init_logger(name=None, level=None):
     global LOG  # pylint: disable=global-statement
 
     log_format = {
-        'format': '%(asctime)s %(levelname)s [%(name)s]: %(message)s',
-        'datefmt': '%Y-%m-%d %H:%M:%S',
+        'format': '%(asctime)s.%(msecs)03d %(levelname)s [%(name)s]: %(message)s',
+        'datefmt': '%Y-%m-%dT%H:%M:%S',
         # 'filename': LOG_PATH,
         'level': LOG_LEVEL if level is None else level
     }
@@ -91,6 +91,11 @@ def main(argv=None, embedded=False, debug=None):
         return 0, "USAGE"
     num_trees = len(forest)
     LOG.debug(f"Guarded dispatch {forest=}, {num_trees=}")
+
+    LOG.info(
+        f"Starting validation visiting a forest with {num_trees} tree{'' if num_trees == 1 else 's'}"
+    )
+
     total, folders, ignored, csvs, inis, jsons, tomls, xmls, yamls = 0, 0, 0, 0, 0, 0, 0, 0, 0
     for tree in forest:
         for path in visit(tree):
@@ -178,24 +183,25 @@ def main(argv=None, embedded=False, debug=None):
                 ignored += 1
                 continue
 
+    success = "Successfully validated"
     if csvs:
         LOG.info(
-            "Validated %d total CSV file%s.", csvs, "" if csvs == 1 else "s")
+            "- %s %d total CSV file%s.", success, csvs, "" if csvs == 1 else "s")
     if inis:
         LOG.info(
-            "Validated %d total INI file%s.", inis, "" if inis == 1 else "s")
+            "- %s %d total INI file%s.", success, inis, "" if inis == 1 else "s")
     if jsons:
         LOG.info(
-            "Validated %d total JSON file%s.", jsons, "" if jsons == 1 else "s")
+            "- %s %d total JSON file%s.", success, jsons, "" if jsons == 1 else "s")
     if tomls:
         LOG.info(
-            "Validated %d total TOML file%s.", tomls, "" if tomls == 1 else "s")
+            "- %s %d total TOML file%s.", success, tomls, "" if tomls == 1 else "s")
     if xmls:
         LOG.info(
-            "Validated %d total XML file%s.", xmls, "" if xmls == 1 else "s")
+            "- %s %d total XML file%s.", success, xmls, "" if xmls == 1 else "s")
     if yamls:
         LOG.info(
-            "Validated %d total YAML file%s.", yamls, "" if yamls == 1 else "s")
+            "- %s %d total YAML file%s.", success, yamls, "" if yamls == 1 else "s")
 
     configs = csvs + inis + jsons + tomls + xmls + yamls
     LOG.info(
