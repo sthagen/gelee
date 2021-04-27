@@ -1,1 +1,5 @@
+# Installation
 
+```
+$ pipx install gelee
+```
