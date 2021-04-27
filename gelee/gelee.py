@@ -184,24 +184,18 @@ def main(argv=None, embedded=False, debug=None):
                 continue
 
     success = "Successfully validated"
-    if csvs:
-        LOG.info(
-            "- %s %d total CSV file%s.", success, csvs, "" if csvs == 1 else "s")
-    if inis:
-        LOG.info(
-            "- %s %d total INI file%s.", success, inis, "" if inis == 1 else "s")
-    if jsons:
-        LOG.info(
-            "- %s %d total JSON file%s.", success, jsons, "" if jsons == 1 else "s")
-    if tomls:
-        LOG.info(
-            "- %s %d total TOML file%s.", success, tomls, "" if tomls == 1 else "s")
-    if xmls:
-        LOG.info(
-            "- %s %d total XML file%s.", success, xmls, "" if xmls == 1 else "s")
-    if yamls:
-        LOG.info(
-            "- %s %d total YAML file%s.", success, yamls, "" if yamls == 1 else "s")
+    pairs = (
+        (csvs, "CSV"),
+        (inis, "INI"),
+        (jsons, "JSON"),
+        (tomls, "TOML"),
+        (xmls, "XML"),
+        (yamls, "YAML"),
+    )
+    for count, kind in pairs:
+        if count:
+            LOG.info(
+                "- %s %d total %s file%s.", success, count, kind, "" if count == 1 else "s")
 
     configs = csvs + inis + jsons + tomls + xmls + yamls
     LOG.info(
