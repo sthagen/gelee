@@ -40,6 +40,7 @@ def init_logger(name=None, level=None):
     }
     logging.basicConfig(**log_format)
     LOG = logging.getLogger(APP if name is None else name)
+    LOG.propagate = True
 
 
 def load_xml(document_path):
