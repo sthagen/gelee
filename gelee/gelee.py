@@ -122,7 +122,7 @@ def main(argv=None, abort=False, debug=None):
                 if not path.stat().st_size:
                     LOG.error(failure_path_reason, path, "ERROR: Empty CSV file")
                     if abort:
-                        return 1, str(err)
+                        return 1, "ERROR: Empty CSV file"
                     failures += 1
                     continue
 
@@ -230,7 +230,7 @@ def main(argv=None, abort=False, debug=None):
                 if not path.stat().st_size:
                     LOG.error(failure_path_reason, path, "ERROR: Empty XML file")
                     if abort:
-                        return 1, str(err)
+                        return 1, "ERROR: Empty XML file"
                     failures += 1
                     continue
 
