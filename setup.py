@@ -18,7 +18,7 @@ README += (HERE / "docs" / "changes.md").read_text()
 # This call to setup() does all the work
 setup(
     name="gelee",
-    version="0.0.4",
+    version="0.0.5",
     description="Configuration format validator for CSV, INI, JSON, TOML, XML, and YAML.",
     long_description=README,
     long_description_content_type="text/markdown",
