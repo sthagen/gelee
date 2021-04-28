@@ -1,5 +1,10 @@
 # Change History
 
+## 0.0.5 (2021-04-28)
+
+* Hot fix for optimized empty csv and xml file handling
+* Fifth release on PyPI
+
 ## 0.0.4 (2021-04-28)
 
 * Fixed gelee app (console script)
