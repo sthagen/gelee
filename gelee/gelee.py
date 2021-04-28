@@ -227,6 +227,13 @@ def main(argv=None, abort=False, debug=None):
                             return 1, str(err)
                         failures += 1
             elif final_suffix == ".xml":
+                if not path.stat().st_size:
+                    LOG.error(failure_path_reason, path, "ERROR: Empty XML file")
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
+                    continue
+
                 xml_tree, message = load_xml(path)
                 if xml_tree:
                     xmls += 1
