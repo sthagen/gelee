@@ -14,11 +14,19 @@ def test_main_ok_no_args(capsys):
     assert not err
 
 
-def test_main_ok_tests_fixtures_arg(capsys):
+def test_main_ok_tests_fixtures_valid_as_arg(capsys):
     assert cli.main(["tests/fixtures/valid/"], debug=False) == 0
     out, err = capsys.readouterr()
     assert "usage" not in out.lower()
     assert "ok" in out.lower()
+    assert not err
+
+
+def test_main_nok_tests_fixtures_invalid_as_arg(capsys):
+    assert cli.main(["tests/fixtures/invalid/"], debug=False) == 0
+    out, err = capsys.readouterr()
+    assert "usage" not in out.lower()
+    assert "fail" in out.lower()
     assert not err
 
 
