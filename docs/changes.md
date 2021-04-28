@@ -1,5 +1,15 @@
 # Change History
 
+## 0.0.4 (2021-04-28)
+
+* Fixed gelee app (console script)
+* Fixed single file path use case
+* Enhanced report on empty CSV (invalid) use case
+* Enhanced report on non-existing paths
+* Added more tests to detect regressions
+* Fixed summary singular / plural for total paths
+* Fourth release on PyPI
+
 ## 0.0.3 (2021-04-27)
 
 * Added YAML well-formed lint
