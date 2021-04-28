@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=line-too-long,missing-docstring,reimported,unused-import,unused-variable
+import logging
 import pathlib
 
 import pytest  # type: ignore
@@ -12,6 +13,16 @@ def test_main_ok_no_args(capsys):
     out, err = capsys.readouterr()
     assert "usage" in out.lower()
     assert not err
+
+
+def test_main_ok_single_ignore_file_as_arg(caplog, capsys):
+    caplog.set_level(logging.INFO)
+    assert cli.main(["tests/fixtures/ignore/markdown/empty.md"], debug=False) == 0
+    out, err = capsys.readouterr()
+    assert "usage" not in out.lower()
+    assert "ok" in out.lower()
+    assert not err
+    assert "ignored 1 non-config file" in caplog.text.lower()
 
 
 def test_main_ok_single_valid_file_as_arg(capsys):
