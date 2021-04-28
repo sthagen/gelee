@@ -73,10 +73,14 @@ def walk_tree_explicit(base_path):
                 yield entry
 
 
-def visit(tree):
+def visit(tree_or_file_path):
     """Visit tree and yield the leaves."""
-    for path in pathlib.Path(tree).rglob("*"):
-        yield path
+    thing = pathlib.Path(tree_or_file_path)
+    if thing.is_file():
+        yield thing
+    else:
+        for path in thing.rglob("*"):
+            yield path
 
 
 def slugify(error):
@@ -114,6 +118,13 @@ def main(argv=None, abort=False, debug=None):
             final_suffix = '' if not path.suffixes else path.suffixes[-1].lower()
 
             if final_suffix == ".csv":
+                if not path.stat().st_size:
+                    LOG.error(failure_path_reason, path, "ERROR: Empty CSV file")
+                    if abort:
+                        return 1, str(err)
+                    failures += 1
+                    continue
+
                 with open(path, newline='') as handle:
                     try:
                         try:
