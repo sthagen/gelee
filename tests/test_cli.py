@@ -49,6 +49,15 @@ def test_main_nok_single_invalid_file_as_arg(capsys):
     assert not err
 
 
+def test_main_nok_single_invalid_file_as_arg_and_abort(caplog, capsys):
+    caplog.set_level(logging.ERROR)
+    assert cli.main(["tests/fixtures/invalid/ini/missing_section_header.ini"], abort=True, debug=False) == 1
+    out, err = capsys.readouterr()
+    assert not out
+    assert not err
+    assert "failed validation for path" in caplog.text.lower()
+
+
 def test_main_nok_tests_fixtures_invalid_as_arg(capsys):
     assert cli.main(["tests/fixtures/invalid/"], debug=False) == 0
     out, err = capsys.readouterr()
