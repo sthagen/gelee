@@ -265,7 +265,8 @@ def main(argv=None, abort=False, debug=None):
     configs = csvs + inis + jsons + tomls + xmls + yamls
     LOG.info(
         f"Finished validation of {configs} configuration file{'' if configs == 1 else 's'}"
-        f" with {failures} failure{'' if failures == 1 else 's'} visiting {total} paths"
+        f" with {failures} failure{'' if failures == 1 else 's'}"
+        f" visiting {total} path{'' if total == 1 else 's'}"
         f" (ignored {ignored} non-config file{'' if ignored == 1 else 's'}"
         f" in {folders} folder{'' if folders == 1 else 's'})"
     )
