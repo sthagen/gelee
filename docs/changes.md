@@ -4,7 +4,7 @@
 
 * Fixed gelee app (console script)
 * Fixed single file path use case
-* Enhanced report on empty CSV (invalid) use case
+* Enhanced detection of and report on empty CSV as well as XML files (invalid use cases)
 * Enhanced report on non-existing paths
 * Added more tests to detect regressions
 * Fixed summary singular / plural for total paths
