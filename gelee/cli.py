@@ -26,7 +26,7 @@ def main(argv=None, abort=None, debug=None):
     abort = abort if abort else ABORT
     for arg in argv:
         if not pathlib.Path(arg).is_file() and not pathlib.Path(arg).is_dir():
-            print("ERROR: For now only paths understood.")
+            print("ERROR: For now only existing paths accepted.")
             sys.exit(2)
 
     code, _ = lint.main(argv, abort=abort, debug=debug)
