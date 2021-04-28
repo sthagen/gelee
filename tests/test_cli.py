@@ -15,7 +15,7 @@ def test_main_ok_no_args(capsys):
 
 
 def test_main_ok_tests_fixtures_arg(capsys):
-    assert cli.main(["tests/fixtures/"], debug=False) == 0
+    assert cli.main(["tests/fixtures/valid/"], debug=False) == 0
     out, err = capsys.readouterr()
     assert "usage" not in out.lower()
     assert "ok" in out.lower()
