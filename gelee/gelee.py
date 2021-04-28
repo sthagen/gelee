@@ -200,21 +200,15 @@ def main(argv=None, abort=False, debug=None):
                     if abort:
                         return 1, str(err)
                     failures += 1
-            elif final_suffix in (".geojson", ".json"):
+            elif final_suffix in (".geojson", ".json", ".toml"):
+                loader = toml.load if final_suffix == ".toml" else json.load
                 with open(path, "rt", encoding="utf-8") as handle:
                     try:
-                        _ = json.load(handle)
-                        jsons += 1
-                    except Exception as err:
-                        LOG.error(failure_path_reason, path, slugify(err))
-                        if abort:
-                            return 1, str(err)
-                        failures += 1
-            elif final_suffix == ".toml":
-                with open(path, "rt", encoding="utf-8") as handle:
-                    try:
-                        _ = toml.load(handle)
-                        tomls += 1
+                        _ = loader(handle)
+                        if final_suffix == ".toml":
+                            tomls += 1
+                        else:
+                            jsons += 1
                     except Exception as err:
                         LOG.error(failure_path_reason, path, slugify(err))
                         if abort:
