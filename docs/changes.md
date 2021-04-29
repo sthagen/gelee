@@ -1,5 +1,11 @@
 # Change History
 
+## 0.0.7 (2021-04-30)
+
+* Enhanced performance
+* Hardened the parsing
+* Seventh release on PyPI
+
 ## 0.0.6 (2021-04-29)
 
 * Removed duplicates from arguments
