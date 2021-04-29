@@ -1,5 +1,11 @@
 # Change History
 
+## 0.0.6 (2021-04-29)
+
+* Removed duplicates from arguments
+* Backported to Python 3.7 and optimizing log payloads
+* Sixth release on PyPI
+
 ## 0.0.5 (2021-04-28)
 
 * Hot fix for optimized empty csv and xml file handling
