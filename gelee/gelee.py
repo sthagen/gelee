@@ -100,11 +100,10 @@ def main(argv=None, abort=False, debug=None):
         print("Usage: gelee paths-to-files")
         return 0, "USAGE"
     num_trees = len(forest)
-    LOG.debug(f"Guarded dispatch {forest=}, {num_trees=}")
+    LOG.debug("Guarded dispatch forest=%s, num_trees=%d", forest, num_trees)
 
-    LOG.info(
-        f"Starting validation visiting a forest with {num_trees} tree{'' if num_trees == 1 else 's'}"
-    )
+    LOG.info("Starting validation visiting a forest with %d tree%s", 
+             num_trees, '' if num_trees == 1 else 's')
     failure_path_reason = "Failed validation for path %s with error: %s"
     total, folders, ignored, csvs, inis, jsons, tomls, xmls, yamls = 0, 0, 0, 0, 0, 0, 0, 0, 0
     failures = 0
@@ -271,7 +270,7 @@ def main(argv=None, abort=False, debug=None):
                 "- %s %d total %s file%s.", success, count, kind, "" if count == 1 else "s")
 
     configs = csvs + inis + jsons + tomls + xmls + yamls
-    LOG.info(
+    LOG.info(  # TODO remove f-strings also here
         f"Finished validation of {configs} configuration file{'' if configs == 1 else 's'}"
         f" with {failures} failure{'' if failures == 1 else 's'}"
         f" visiting {total} path{'' if total == 1 else 's'}"
