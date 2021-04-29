@@ -33,6 +33,20 @@ def test_main_ok_single_valid_file_as_arg(capsys):
     assert not err
 
 
+def test_main_ok_duplicated_single_valid_file_as_args(caplog, capsys):
+    caplog.set_level(logging.INFO)
+    duplicate = "tests/fixtures/valid/json/empty_object.json"
+    assert cli.main([duplicate, duplicate], debug=False) == 0
+    out, err = capsys.readouterr()
+    assert "usage" not in out.lower()
+    assert "ok" in out.lower()
+    assert not err
+    assert "starting validation visiting a forest with 1 tree" in caplog.text.lower()
+    assert "successfully validated 1 total json file." in caplog.text.lower()
+    assert ("finished validation of 1 configuration file with 0 failures"
+            " visiting 1 path (ignored 0 non-config files in 0 folders)") in caplog.text.lower()
+
+
 def test_main_ok_tests_fixtures_valid_as_arg(capsys):
     assert cli.main(["tests/fixtures/valid/"], debug=False) == 0
     out, err = capsys.readouterr()
