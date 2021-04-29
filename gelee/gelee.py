@@ -109,7 +109,7 @@ def main(argv=None, abort=False, debug=None):
     failures = 0
     for tree in forest:
         for path in visit(tree):
-            LOG.debug(f" - {path=}, {total=}")
+            LOG.debug(" - path=%s, total=%d", path, total)
             total += 1
             if not path.is_file():
                 folders += 1
