@@ -160,6 +160,15 @@ def parse_xml(path):
         return False, slugify(message)
 
 
+def process(path, handler, success, failure):
+    """Generic processing of path yields a,ended COHDA protocol."""
+    ok, message = handler(path)
+    if ok:
+        return True, message, success + 1, failure
+    else:
+        return False, message, success, failure + 1
+
+
 def main(argv=None, abort=False, debug=None):
     """Drive the validator.
     This function acts as the command line interface backend.
@@ -188,25 +197,17 @@ def main(argv=None, abort=False, debug=None):
             final_suffix = '' if not path.suffixes else path.suffixes[-1].lower()
 
             if final_suffix == ".csv":
-                ok, message = parse_csv(path)
-                if not ok and abort:
+                ok, message, csvs, failures = process(path, parse_csv, csvs, failures)
+                if not ok:
                     LOG.error(FAILURE_PATH_REASON, path, message)
+                if abort:
                     return 1, message
-                if ok:
-                    csvs += 1
-                else:
-                    failures += 1
-                    LOG.error(FAILURE_PATH_REASON, path, message)
             elif final_suffix == ".ini":
-                ok, message = parse_ini(path)
-                if not ok and abort:
+                ok, message, inis, failures = process(path, parse_ini, inis, failures)
+                if not ok:
                     LOG.error(FAILURE_PATH_REASON, path, message)
+                if abort:
                     return 1, message
-                if ok:
-                    inis += 1
-                else:
-                    failures += 1
-                    LOG.error(FAILURE_PATH_REASON, path, message)
             elif final_suffix in (".geojson", ".json", ".toml"):
                 loader = toml.load if final_suffix == ".toml" else json.load
                 with open(path, "rt", encoding="utf-8") as handle:
@@ -222,15 +223,11 @@ def main(argv=None, abort=False, debug=None):
                             return 1, str(err)
                         failures += 1
             elif final_suffix == ".xml":
-                ok, message = parse_xml(path)
-                if not ok and abort:
+                ok, message, xmls, failures = process(path, parse_xml, xmls, failures)
+                if not ok:
                     LOG.error(FAILURE_PATH_REASON, path, message)
+                if abort:
                     return 1, message
-                if ok:
-                    xmls += 1
-                else:
-                    failures += 1
-                    LOG.error(FAILURE_PATH_REASON, path, message)
             elif final_suffix in (".yaml", ".yml"):
                 with open(path, "rt", encoding="utf-8") as handle:
                     try:
