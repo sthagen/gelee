@@ -148,6 +148,26 @@ def parse_ini(path):
         return False, slugify(err)
 
 
+def parse_json(path):
+    """Simple json as config parser returning the COHDA protocol."""
+    with open(path, "rt", encoding="utf-8") as handle:
+        try:
+            _ = json.load(handle)
+            return True, ''
+        except Exception as err:
+            return False, slugify(err)
+
+
+def parse_toml(path):
+    """Simple toml as config parser returning the COHDA protocol."""
+    with open(path, "rt", encoding="utf-8") as handle:
+        try:
+            _ = toml.load(handle)
+            return True, ''
+        except Exception as err:
+            return False, slugify(err)
+
+
 def parse_xml(path):
     """Simple xml as config parser returning the COHDA protocol."""
     if not path.stat().st_size:
@@ -208,20 +228,18 @@ def main(argv=None, abort=False, debug=None):
                     LOG.error(FAILURE_PATH_REASON, path, message)
                 if abort:
                     return 1, message
-            elif final_suffix in (".geojson", ".json", ".toml"):
-                loader = toml.load if final_suffix == ".toml" else json.load
-                with open(path, "rt", encoding="utf-8") as handle:
-                    try:
-                        _ = loader(handle)
-                        if final_suffix == ".toml":
-                            tomls += 1
-                        else:
-                            jsons += 1
-                    except Exception as err:
-                        LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                        if abort:
-                            return 1, str(err)
-                        failures += 1
+            elif final_suffix in (".geojson", ".json"):
+                ok, message, jsons, failures = process(path, parse_json, jsons, failures)
+                if not ok:
+                    LOG.error(FAILURE_PATH_REASON, path, message)
+                if abort:
+                    return 1, message
+            elif final_suffix == ".toml":
+                ok, message, tomls, failures = process(path, parse_toml, tomls, failures)
+                if not ok:
+                    LOG.error(FAILURE_PATH_REASON, path, message)
+                if abort:
+                    return 1, message
             elif final_suffix == ".xml":
                 ok, message, xmls, failures = process(path, parse_xml, xmls, failures)
                 if not ok:
