@@ -12,6 +12,7 @@ import jsonschema  # type: ignore
 from lxml import etree  # type: ignore
 import toml
 from yaml import load as load_yaml
+
 try:
     from yaml import CLoader as LoaderYaml
 except ImportError:
@@ -19,12 +20,16 @@ except ImportError:
 
 ENCODING = "utf-8"
 
-APP = 'gelee'
+APP = "gelee"
 
 LOG = logging.getLogger()  # Temporary refactoring: module level logger
-LOG_FOLDER = pathlib.Path('logs')
-LOG_FILE = f'{APP}.log'
-LOG_PATH = pathlib.Path(LOG_FOLDER, LOG_FILE) if LOG_FOLDER.is_dir() else pathlib.Path(LOG_FILE)
+LOG_FOLDER = pathlib.Path("logs")
+LOG_FILE = f"{APP}.log"
+LOG_PATH = (
+    pathlib.Path(LOG_FOLDER, LOG_FILE)
+    if LOG_FOLDER.is_dir()
+    else pathlib.Path(LOG_FILE)
+)
 LOG_LEVEL = logging.INFO
 
 FAILURE_PATH_REASON = "Failed validation for path %s with error: %s"
@@ -35,10 +40,10 @@ def init_logger(name=None, level=None):
     global LOG  # pylint: disable=global-statement
 
     log_format = {
-        'format': '%(asctime)s.%(msecs)03d %(levelname)s [%(name)s]: %(message)s',
-        'datefmt': '%Y-%m-%dT%H:%M:%S',
+        "format": "%(asctime)s.%(msecs)03d %(levelname)s [%(name)s]: %(message)s",
+        "datefmt": "%Y-%m-%dT%H:%M:%S",
         # 'filename': LOG_PATH,
-        'level': LOG_LEVEL if level is None else level
+        "level": LOG_LEVEL if level is None else level,
     }
     logging.basicConfig(**log_format)
     LOG = logging.getLogger(APP if name is None else name)
@@ -88,7 +93,7 @@ def visit(tree_or_file_path):
 
 def slugify(error):
     """Replace newlines by space."""
-    return str(error).replace('\n', '')
+    return str(error).replace("\n", "")
 
 
 def parse_csv(path):
@@ -96,7 +101,7 @@ def parse_csv(path):
     if not path.stat().st_size:
         return False, "ERROR: Empty CSV file"
 
-    with open(path, newline='') as handle:
+    with open(path, newline="") as handle:
         try:
             try:
                 dialect = csv.Sniffer().sniff(handle.read(1024), ",\t; ")
@@ -104,7 +109,7 @@ def parse_csv(path):
             except csv.Error as err:
                 if "could not determine delimiter" in str(err).lower():
                     dialect = csv.Dialect()
-                    dialect.delimiter = ','
+                    dialect.delimiter = ","
                     dialect.quoting = csv.QUOTE_NONE
                     dialect.strict = True
                 else:
@@ -113,7 +118,7 @@ def parse_csv(path):
                 reader = csv.reader(handle, dialect)
                 for _ in reader:
                     pass
-                return True, ''
+                return True, ""
             except csv.Error as err:
                 return False, slugify(err)
         except (Exception, csv.Error) as err:
@@ -125,26 +130,19 @@ def parse_ini(path):
     config = configparser.ConfigParser()
     try:
         config.read(path)
-        return True, ''
-    except configparser.NoSectionError as err:
-        return False, slugify(err)
-    except configparser.DuplicateSectionError as err:
-        return False, slugify(err)
-    except configparser.DuplicateOptionError as err:
-        return False, slugify(err)
-    except configparser.NoOptionError as err:
-        return False, slugify(err)
-    except configparser.InterpolationDepthError as err:
-        return False, slugify(err)
-    except configparser.InterpolationMissingOptionError as err:
-        return False, slugify(err)
-    except configparser.InterpolationSyntaxError as err:
-        return False, slugify(err)
-    except configparser.InterpolationError as err:
-        return False, slugify(err)
-    except configparser.MissingSectionHeaderError as err:
-        return False, slugify(err)
-    except configparser.ParsingError as err:
+        return True, ""
+    except (
+        configparser.NoSectionError,
+        configparser.DuplicateSectionError,
+        configparser.DuplicateOptionError,
+        configparser.NoOptionError,
+        configparser.InterpolationDepthError,
+        configparser.InterpolationMissingOptionError,
+        configparser.InterpolationSyntaxError,
+        configparser.InterpolationError,
+        configparser.MissingSectionHeaderError,
+        configparser.ParsingError,
+    ) as err:
         return False, slugify(err)
 
 
@@ -165,9 +163,9 @@ def parse_xml(path):
 
     xml_tree, message = load_xml(path)
     if xml_tree:
-        return True, ''
-    else:
-        return False, slugify(message)
+        return True, ""
+
+    return False, slugify(message)
 
 
 def parse_yaml(path):
@@ -182,18 +180,18 @@ def parse_generic(path, loader, loader_options=None):
     with open(path, "rt", encoding="utf-8") as handle:
         try:
             _ = loader(handle, **loader_options)
-            return True, ''
+            return True, ""
         except Exception as err:
             return False, slugify(err)
 
 
 def process(path, handler, success, failure):
     """Generic processing of path yields a,ended COHDA protocol."""
-    ok, message = handler(path)
-    if ok:
+    valid, message = handler(path)
+    if valid:
         return True, message, success + 1, failure
-    else:
-        return False, message, success, failure + 1
+
+    return False, message, success, failure + 1
 
 
 def main(argv=None, abort=False, debug=None):
@@ -209,9 +207,22 @@ def main(argv=None, abort=False, debug=None):
     num_trees = len(forest)
     LOG.debug("Guarded dispatch forest=%s, num_trees=%d", forest, num_trees)
 
-    LOG.info("Starting validation visiting a forest with %d tree%s",
-             num_trees, '' if num_trees == 1 else 's')
-    total, folders, ignored, csvs, inis, jsons, tomls, xmls, yamls = 0, 0, 0, 0, 0, 0, 0, 0, 0
+    LOG.info(
+        "Starting validation visiting a forest with %d tree%s",
+        num_trees,
+        "" if num_trees == 1 else "s",
+    )
+    total, folders, ignored, csvs, inis, jsons, tomls, xmls, yamls = (
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+    )
     failures = 0
     for tree in forest:
         for path in visit(tree):
@@ -221,25 +232,37 @@ def main(argv=None, abort=False, debug=None):
                 folders += 1
                 continue
 
-            final_suffix = '' if not path.suffixes else path.suffixes[-1].lower()
+            final_suffix = "" if not path.suffixes else path.suffixes[-1].lower()
 
             if final_suffix == ".csv":
-                ok, message, csvs, failures = process(path, parse_csv, csvs, failures)
+                valid, message, csvs, failures = process(
+                    path, parse_csv, csvs, failures
+                )
             elif final_suffix == ".ini":
-                ok, message, inis, failures = process(path, parse_ini, inis, failures)
+                valid, message, inis, failures = process(
+                    path, parse_ini, inis, failures
+                )
             elif final_suffix in (".geojson", ".json"):
-                ok, message, jsons, failures = process(path, parse_json, jsons, failures)
+                valid, message, jsons, failures = process(
+                    path, parse_json, jsons, failures
+                )
             elif final_suffix == ".toml":
-                ok, message, tomls, failures = process(path, parse_toml, tomls, failures)
+                valid, message, tomls, failures = process(
+                    path, parse_toml, tomls, failures
+                )
             elif final_suffix == ".xml":
-                ok, message, xmls, failures = process(path, parse_xml, xmls, failures)
+                valid, message, xmls, failures = process(
+                    path, parse_xml, xmls, failures
+                )
             elif final_suffix in (".yaml", ".yml"):
-                ok, message, yamls, failures = process(path, parse_yaml, yamls, failures)
+                valid, message, yamls, failures = process(
+                    path, parse_yaml, yamls, failures
+                )
             else:
                 ignored += 1
                 continue
 
-            if not ok:
+            if not valid:
                 LOG.error(FAILURE_PATH_REASON, path, message)
             if abort:
                 return 1, message
@@ -256,7 +279,12 @@ def main(argv=None, abort=False, debug=None):
     for count, kind in pairs:
         if count:
             LOG.info(
-                "- %s %d total %s file%s.", success, count, kind, "" if count == 1 else "s")
+                "- %s %d total %s file%s.",
+                success,
+                count,
+                kind,
+                "" if count == 1 else "s",
+            )
 
     configs = csvs + inis + jsons + tomls + xmls + yamls
     LOG.info(  # TODO remove f-strings also here
