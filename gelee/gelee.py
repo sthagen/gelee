@@ -120,6 +120,18 @@ def parse_csv(path):
             return False, slugify(err)
 
 
+def parse_xml(path):
+    """Simple xml as config parser returnging the COHDA protocol."""
+    if not path.stat().st_size:
+        return False, "ERROR: Empty XML file"
+
+    xml_tree, message = load_xml(path)
+    if xml_tree:
+        return True, ''
+    else:
+        return False, slugify(message)
+
+
 def main(argv=None, abort=False, debug=None):
     """Drive the validator.
     This function acts as the command line interface backend.
@@ -227,21 +239,15 @@ def main(argv=None, abort=False, debug=None):
                             return 1, str(err)
                         failures += 1
             elif final_suffix == ".xml":
-                if not path.stat().st_size:
-                    LOG.error(FAILURE_PATH_REASON, path, "ERROR: Empty XML file")
-                    if abort:
-                        return 1, "ERROR: Empty XML file"
-                    failures += 1
-                    continue
-
-                xml_tree, message = load_xml(path)
-                if xml_tree:
+                ok, message = parse_xml(path)
+                if not ok and abort:
+                    LOG.error(FAILURE_PATH_REASON, path, message)
+                    return 1, message
+                if ok:
                     xmls += 1
                 else:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(message))
-                    if abort:
-                        return 1, str(message)
                     failures += 1
+                    LOG.error(FAILURE_PATH_REASON, path, message)
             elif final_suffix in (".yaml", ".yml"):
                 with open(path, "rt", encoding="utf-8") as handle:
                     try:
