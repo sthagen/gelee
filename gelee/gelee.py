@@ -150,22 +150,12 @@ def parse_ini(path):
 
 def parse_json(path):
     """Simple json as config parser returning the COHDA protocol."""
-    with open(path, "rt", encoding="utf-8") as handle:
-        try:
-            _ = json.load(handle)
-            return True, ''
-        except Exception as err:
-            return False, slugify(err)
+    return parse_generic(path, json.load)
 
 
 def parse_toml(path):
     """Simple toml as config parser returning the COHDA protocol."""
-    with open(path, "rt", encoding="utf-8") as handle:
-        try:
-            _ = toml.load(handle)
-            return True, ''
-        except Exception as err:
-            return False, slugify(err)
+    return parse_generic(path, toml.load)
 
 
 def parse_xml(path):
@@ -182,9 +172,16 @@ def parse_xml(path):
 
 def parse_yaml(path):
     """Simple yaml as config parser returning the COHDA protocol."""
+    return parse_generic(path, load_yaml, {"Loader": LoaderYaml})
+
+
+def parse_generic(path, loader, loader_options=None):
+    """Simple generic parser proxy."""
+    if loader_options is None:
+        loader_options = {}
     with open(path, "rt", encoding="utf-8") as handle:
         try:
-            _ = load_yaml(handle, Loader=LoaderYaml)
+            _ = loader(handle, **loader_options)
             return True, ''
         except Exception as err:
             return False, slugify(err)
