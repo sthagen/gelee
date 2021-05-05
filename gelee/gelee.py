@@ -180,6 +180,16 @@ def parse_xml(path):
         return False, slugify(message)
 
 
+def parse_yaml(path):
+    """Simple yaml as config parser returning the COHDA protocol."""
+    with open(path, "rt", encoding="utf-8") as handle:
+        try:
+            _ = load_yaml(handle, Loader=LoaderYaml)
+            return True, ''
+        except Exception as err:
+            return False, slugify(err)
+
+
 def process(path, handler, success, failure):
     """Generic processing of path yields a,ended COHDA protocol."""
     ok, message = handler(path)
@@ -218,47 +228,24 @@ def main(argv=None, abort=False, debug=None):
 
             if final_suffix == ".csv":
                 ok, message, csvs, failures = process(path, parse_csv, csvs, failures)
-                if not ok:
-                    LOG.error(FAILURE_PATH_REASON, path, message)
-                if abort:
-                    return 1, message
             elif final_suffix == ".ini":
                 ok, message, inis, failures = process(path, parse_ini, inis, failures)
-                if not ok:
-                    LOG.error(FAILURE_PATH_REASON, path, message)
-                if abort:
-                    return 1, message
             elif final_suffix in (".geojson", ".json"):
                 ok, message, jsons, failures = process(path, parse_json, jsons, failures)
-                if not ok:
-                    LOG.error(FAILURE_PATH_REASON, path, message)
-                if abort:
-                    return 1, message
             elif final_suffix == ".toml":
                 ok, message, tomls, failures = process(path, parse_toml, tomls, failures)
-                if not ok:
-                    LOG.error(FAILURE_PATH_REASON, path, message)
-                if abort:
-                    return 1, message
             elif final_suffix == ".xml":
                 ok, message, xmls, failures = process(path, parse_xml, xmls, failures)
-                if not ok:
-                    LOG.error(FAILURE_PATH_REASON, path, message)
-                if abort:
-                    return 1, message
             elif final_suffix in (".yaml", ".yml"):
-                with open(path, "rt", encoding="utf-8") as handle:
-                    try:
-                        _ = load_yaml(handle, Loader=LoaderYaml)
-                        yamls += 1
-                    except Exception as err:
-                        LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                        if abort:
-                            return 1, str(err)
-                        failures += 1
+                ok, message, yamls, failures = process(path, parse_yaml, yamls, failures)
             else:
                 ignored += 1
                 continue
+
+            if not ok:
+                LOG.error(FAILURE_PATH_REASON, path, message)
+            if abort:
+                return 1, message
 
     success = "Successfully validated"
     pairs = (
