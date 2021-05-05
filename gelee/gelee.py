@@ -120,8 +120,36 @@ def parse_csv(path):
             return False, slugify(err)
 
 
+def parse_ini(path):
+    """Simple ini as config parser returning the COHDA protocol."""
+    config = configparser.ConfigParser()
+    try:
+        config.read(path)
+        return True, ''
+    except configparser.NoSectionError as err:
+        return False, slugify(err)
+    except configparser.DuplicateSectionError as err:
+        return False, slugify(err)
+    except configparser.DuplicateOptionError as err:
+        return False, slugify(err)
+    except configparser.NoOptionError as err:
+        return False, slugify(err)
+    except configparser.InterpolationDepthError as err:
+        return False, slugify(err)
+    except configparser.InterpolationMissingOptionError as err:
+        return False, slugify(err)
+    except configparser.InterpolationSyntaxError as err:
+        return False, slugify(err)
+    except configparser.InterpolationError as err:
+        return False, slugify(err)
+    except configparser.MissingSectionHeaderError as err:
+        return False, slugify(err)
+    except configparser.ParsingError as err:
+        return False, slugify(err)
+
+
 def parse_xml(path):
-    """Simple xml as config parser returnging the COHDA protocol."""
+    """Simple xml as config parser returning the COHDA protocol."""
     if not path.stat().st_size:
         return False, "ERROR: Empty XML file"
 
@@ -170,60 +198,15 @@ def main(argv=None, abort=False, debug=None):
                     failures += 1
                     LOG.error(FAILURE_PATH_REASON, path, message)
             elif final_suffix == ".ini":
-                config = configparser.ConfigParser()
-                try:
-                    config.read(path)
+                ok, message = parse_ini(path)
+                if not ok and abort:
+                    LOG.error(FAILURE_PATH_REASON, path, message)
+                    return 1, message
+                if ok:
                     inis += 1
-                except configparser.NoSectionError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
+                else:
                     failures += 1
-                except configparser.DuplicateSectionError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.DuplicateOptionError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.NoOptionError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.InterpolationDepthError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.InterpolationMissingOptionError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.InterpolationSyntaxError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.InterpolationError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.MissingSectionHeaderError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
-                except configparser.ParsingError as err:
-                    LOG.error(FAILURE_PATH_REASON, path, slugify(err))
-                    if abort:
-                        return 1, str(err)
-                    failures += 1
+                    LOG.error(FAILURE_PATH_REASON, path, message)
             elif final_suffix in (".geojson", ".json", ".toml"):
                 loader = toml.load if final_suffix == ".toml" else json.load
                 with open(path, "rt", encoding="utf-8") as handle:
