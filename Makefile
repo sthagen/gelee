@@ -46,4 +46,3 @@ available:
 	revision=sha1:{{index .Config.Labels "org.opencontainers.image.revision"}}' \
 	$(package))" ;\
 	docker push $(package) ;\
-
