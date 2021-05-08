@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 # pylint: disable=line-too-long
-""""Validate configuration files against their format and maybe schema."""
+"""Validate configuration files against their format and maybe schema."""
 import pathlib
 import os
 import sys
