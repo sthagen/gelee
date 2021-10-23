@@ -36,8 +36,8 @@ ARG VERSION
 LABEL org.opencontainers.image.created=$BUILD_TS \
     org.opencontainers.image.authors="Stefan Hagen <mailto:stefan@hagen.link>" \
     org.opencontainers.image.url="https://hub.docker.com/repository/docker/shagen/gelee/" \
-    org.opencontainers.image.documentation="https://sthagen.github.io/solid-umbrella/" \
-    org.opencontainers.image.source="https://github.com/sthagen/solid-umbrella/" \
+    org.opencontainers.image.documentation="https://sthagen.github.io/gelee/" \
+    org.opencontainers.image.source="https://github.com/sthagen/gelee/" \
     org.opencontainers.image.version=$VERSION \
     org.opencontainers.image.revision=$REVISION \
     org.opencontainers.image.vendor="Stefan Hagen <mailto:stefan@hagen.link>" \

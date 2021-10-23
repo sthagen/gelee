@@ -1,10 +1,10 @@
 # Change History
 
-## 0.0.7 (2021-04-30)
+## 2021.10.24
 
 * Enhanced performance
 * Hardened the parsing
-* Seventh release on PyPI
+* Changed development tools
 
 ## 0.0.6 (2021-04-29)
 
