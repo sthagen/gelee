@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 # pylint: disable=line-too-long
 """Validate configuration files against their format and maybe schema."""
-import pathlib
 import os
+import pathlib
 import sys
+import typing
 
 import gelee.gelee as lint
 
@@ -16,6 +17,7 @@ ABORT = bool(os.getenv(ABORT_VAR))
 
 
 # pylint: disable=expression-not-assigned
+@typing.no_type_check
 def main(argv=None, abort=None, debug=None):
     """Dispatch processing of the job.
     This is the strings only command line interface.

@@ -2,8 +2,8 @@ SHELL = /bin/bash
 package = shagen/gelee
 
 .DEFAULT_GOAL := all
-isort = isort afasi tests
-black = black -S -l 120 --target-version py39 afasi tests
+isort = isort gelee tests
+black = black -S -l 120 --target-version py38 gelee tests
 
 .PHONY: install
 install:
@@ -28,17 +28,17 @@ init:
 .PHONY: lint
 lint:
 	python setup.py check -ms
-	flake8 afasi/ tests/
+	flake8 gelee/ tests/
 	$(isort) --check-only --df
 	$(black) --check --diff
 
 .PHONY: mypy
 mypy:
-	mypy afasi
+	mypy gelee
 
 .PHONY: test
 test: clean
-	pytest --cov=afasi --log-format="%(levelname)s %(message)s"
+	pytest --cov=gelee --log-format="%(levelname)s %(message)s"
 
 .PHONY: testcov
 testcov: test
