@@ -2,9 +2,11 @@
 
 ## 2021.10.24
 
-* Enhanced performance
-* Hardened the parsing
+* Changed the commandline API now using commands
+* Commandline API now based on [Typer](https://pypi.org/project/typer/)
 * Changed development tools
+* For now no updates to the docker image ...
+* Added a wheel to the package
 
 ## 0.0.6 (2021-04-29)
 
