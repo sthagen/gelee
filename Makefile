@@ -3,7 +3,7 @@ package = shagen/gelee
 
 .DEFAULT_GOAL := all
 isort = isort gelee tests
-black = black -S -l 120 --target-version py38 gelee tests
+black = black -S -l 120 --target-version py39 gelee tests
 
 .PHONY: install
 install:
