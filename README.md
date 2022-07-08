@@ -11,12 +11,6 @@ Gelee - a finer confiture.
 
 Configuration linter for typical formats.
 
-## Status
-
-Experimental.
-
-**Note**: The default branch is `default`.
-
 # Use
 
 <!-- MarkdownTOC -->
@@ -173,3 +167,8 @@ $ gelee version [OPTIONS]
 
 * `-h, --help`: Show this message and exit.
 
+## Status
+
+Experimental.
+
+**Note**: The default branch is `default`.
