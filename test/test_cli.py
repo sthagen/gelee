@@ -16,7 +16,7 @@ def test_main_ok_no_args(capsys):
 
 def test_main_ok_single_ignore_file_as_arg(caplog, capsys):
     caplog.set_level(logging.INFO)
-    assert cli.main(['tests/fixtures/ignore/markdown/empty.md'], debug=False) == 0
+    assert cli.main(['test/fixtures/ignore/markdown/empty.md'], debug=False) == 0
     out, err = capsys.readouterr()
     assert 'usage' not in out.lower()
     assert 'ok' in out.lower()
@@ -25,7 +25,7 @@ def test_main_ok_single_ignore_file_as_arg(caplog, capsys):
 
 
 def test_main_ok_single_valid_file_as_arg(capsys):
-    assert cli.main(['tests/fixtures/valid/json/empty_object.json'], debug=False) == 0
+    assert cli.main(['test/fixtures/valid/json/empty_object.json'], debug=False) == 0
     out, err = capsys.readouterr()
     assert 'usage' not in out.lower()
     assert 'ok' in out.lower()
@@ -34,7 +34,7 @@ def test_main_ok_single_valid_file_as_arg(capsys):
 
 def test_main_ok_duplicated_single_valid_file_as_args(caplog, capsys):
     caplog.set_level(logging.INFO)
-    duplicate = 'tests/fixtures/valid/json/empty_object.json'
+    duplicate = 'test/fixtures/valid/json/empty_object.json'
     assert cli.main([duplicate, duplicate], debug=False) == 0
     out, err = capsys.readouterr()
     assert 'usage' not in out.lower()
@@ -48,8 +48,8 @@ def test_main_ok_duplicated_single_valid_file_as_args(caplog, capsys):
     ) in caplog.text.lower()
 
 
-def test_main_ok_tests_fixtures_valid_as_arg(capsys):
-    assert cli.main(['tests/fixtures/valid/'], debug=False) == 0
+def test_main_ok_test_fixtures_valid_as_arg(capsys):
+    assert cli.main(['test/fixtures/valid/'], debug=False) == 0
     out, err = capsys.readouterr()
     assert 'usage' not in out.lower()
     assert 'ok' in out.lower()
@@ -57,7 +57,7 @@ def test_main_ok_tests_fixtures_valid_as_arg(capsys):
 
 
 def test_main_nok_single_invalid_file_as_arg(capsys):
-    assert cli.main(['tests/fixtures/invalid/ini/missing_section_header.ini'], debug=False) == 0
+    assert cli.main(['test/fixtures/invalid/ini/missing_section_header.ini'], debug=False) == 0
     out, err = capsys.readouterr()
     assert 'usage' not in out.lower()
     assert 'fail' in out.lower()
@@ -66,7 +66,7 @@ def test_main_nok_single_invalid_file_as_arg(capsys):
 
 def test_main_nok_single_invalid_empty_csv_file_as_arg_and_abort(caplog, capsys):
     caplog.set_level(logging.ERROR)
-    assert cli.main(['tests/fixtures/invalid/csv/empty.csv'], abort=True, debug=False) == 1
+    assert cli.main(['test/fixtures/invalid/csv/empty.csv'], abort=True, debug=False) == 1
     out, err = capsys.readouterr()
     assert not out
     assert not err
@@ -75,15 +75,15 @@ def test_main_nok_single_invalid_empty_csv_file_as_arg_and_abort(caplog, capsys)
 
 def test_main_nok_single_invalid_file_as_arg_and_abort(caplog, capsys):
     caplog.set_level(logging.ERROR)
-    assert cli.main(['tests/fixtures/invalid/ini/missing_section_header.ini'], abort=True, debug=False) == 1
+    assert cli.main(['test/fixtures/invalid/ini/missing_section_header.ini'], abort=True, debug=False) == 1
     out, err = capsys.readouterr()
     assert not out
     assert not err
     assert 'failed validation for path' in caplog.text.lower()
 
 
-def test_main_nok_tests_fixtures_invalid_as_arg(capsys):
-    assert cli.main(['tests/fixtures/invalid/'], debug=False) == 0
+def test_main_nok_test_fixtures_invalid_as_arg(capsys):
+    assert cli.main(['test/fixtures/invalid/'], debug=False) == 0
     out, err = capsys.readouterr()
     assert 'usage' not in out.lower()
     assert 'fail' in out.lower()
