@@ -62,3 +62,4 @@ clean:
 	@rm -rf build test/.mypy_cache/
 	@rm -f *.log
 	python setup.py clean
+	@rm -fr site/*
