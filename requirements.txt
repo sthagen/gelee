@@ -4,4 +4,4 @@ lxml==4.9.1
 pyyaml==6.0
 toml==0.10.2
 typer==0.6.1
-xmlschema==2.0.0
+xmlschema==2.0.1
