@@ -1,5 +1,12 @@
 # Change History
 
+## 2022.7.24
+
+* Bumped dependecies for development and test
+* Moved from sphinx to mkdocs
+* Moved documentation to https://codes.dilettant.life/docs/leeway
+* Moved tracker to https://todo.sr.ht/~sthagen/gelee
+* Moved normative source repo to https://git.sr.ht/~sthagen/leeway
 ## 2021.10.24
 
 * Changed the commandline API now using commands
