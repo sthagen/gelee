@@ -14,7 +14,7 @@ Configuration linter for typical formats.
 
 ## Usage
 
-* [Usage documentation](https://codes.dilettant.life/docs/gelee/use).
+* [Usage documentation](https://codes.dilettant.life/docs/gelee/usage).
 * [Command Line API](https://codes.dilettant.life/docs/gelee/api).
 ## Documentation
 
