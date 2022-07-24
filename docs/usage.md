@@ -1,15 +1,5 @@
 # Use
 
-<!-- MarkdownTOC -->
-
-- Examples
-  - Version
-  - General Help
-  - Cook Help
-  - Cook
-
-<!-- /MarkdownTOC -->
-
 ## Examples
 
 ### Version

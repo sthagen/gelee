@@ -1,13 +1,5 @@
 # Command Line API
 
-<!-- MarkdownTOC -->
-
-- `gelee`
-  - `gelee cook`
-  - `gelee version`
-
-<!-- /MarkdownTOC -->
-
 ## `gelee`
 
 Gelee - a finer confiture.
