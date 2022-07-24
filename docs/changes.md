@@ -4,9 +4,9 @@
 
 * Bumped dependecies for development and test
 * Moved from sphinx to mkdocs
-* Moved documentation to https://codes.dilettant.life/docs/leeway
+* Moved documentation to https://codes.dilettant.life/docs/gelee
 * Moved tracker to https://todo.sr.ht/~sthagen/gelee
-* Moved normative source repo to https://git.sr.ht/~sthagen/leeway
+* Moved normative source repo to https://git.sr.ht/~sthagen/gelee
 
 ## 2021
 
