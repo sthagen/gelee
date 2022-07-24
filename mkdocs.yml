@@ -26,18 +26,16 @@ extra:
   generator: false
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/sthagen/gelee
+      link: https://git.sr.ht/~sthagen/gelee
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/gelee
-    - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/shagen/gelee
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/shage
 
-copyright: Copyright &copy; 2021 Stefan Hagen under the MIT license
+copyright: Copyright &copy; 2022 Stefan Hagen under the MIT license
 
-repo_name: sthagen/gelee
-repo_url: https://github.com/sthagen/gelee
+repo_name: ~sthagen/gelee
+repo_url: https://git.sr.ht/~sthagen/gelee
 edit_uri: ""
 
 plugins:
