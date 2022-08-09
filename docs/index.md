@@ -14,7 +14,7 @@ Configuration linter for typical formats.
 
 ## Bug Tracker
 
-Feature requests and bug reports are bested entered in the [todos of gelee](https://todo.sr.ht/~sthagen/gelee).
+Feature requests and bug reports are best entered in the [todos of gelee](https://todo.sr.ht/~sthagen/gelee).
 
 ## Primary Source repository
 
