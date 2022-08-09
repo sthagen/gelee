@@ -22,7 +22,7 @@ User and developer [documentation of gelee](https://codes.dilettant.life/docs/ge
 
 ## Bug Tracker
 
-Feature requests and bug reports are bested entered in the [todos of gelee](https://todo.sr.ht/~sthagen/gelee).
+Feature requests and bug reports are best entered in the [todos of gelee](https://todo.sr.ht/~sthagen/gelee).
 ## Primary Source repository
 
 The primary source repository of [gelee is at sourcehut](https://git.sr.ht/~sthagen/gelee)
