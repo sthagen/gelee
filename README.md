@@ -16,6 +16,7 @@ Configuration linter for typical formats.
 
 * [Usage documentation](https://codes.dilettant.life/docs/gelee/usage).
 * [Command Line API](https://codes.dilettant.life/docs/gelee/api).
+
 ## Documentation
 
 User and developer [documentation of gelee](https://codes.dilettant.life/docs/gelee).
@@ -23,10 +24,15 @@ User and developer [documentation of gelee](https://codes.dilettant.life/docs/ge
 ## Bug Tracker
 
 Feature requests and bug reports are best entered in the [todos of gelee](https://todo.sr.ht/~sthagen/gelee).
+
 ## Primary Source repository
 
-The primary source repository of [gelee is at sourcehut](https://git.sr.ht/~sthagen/gelee)
-a collection of tools useful for software development.
+The primary source of `gelee` lives somewhere on a mountain in Central Switzerland.
+But, we use decentralized version control (git), so any clone can become the source to everyone's benefit, no central only code.
+Anyway, the preferred public clones of `gelee` are:
+
+* [on codeberg](https://codeberg.org/sthagen/gelee) - a collaboration platform and git hosting for free and open source software, content and projects.
+* [at sourcehut](https://git.sr.ht/~sthagen/gelee) - a collection of tools useful for software development.
 
 ## Status
 
