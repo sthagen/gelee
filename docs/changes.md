@@ -1,5 +1,10 @@
 # Change History
 
+## 2022.11.28
+
+* Bumped dependencies
+* Bumped python version range to (3.9, 3.10, 3.11)
+
 ## 2022.7.24
 
 * Bumped dependencies for development and test
