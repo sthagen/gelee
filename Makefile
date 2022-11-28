@@ -1,9 +1,9 @@
-SHELL = /bin/bash
-package = shagen/gelee
-
 .DEFAULT_GOAL := all
-isort = isort gelee test
 black = black -S -l 120 --target-version py39 gelee test
+flake8 = flake8 gelee test
+isort = isort gelee test
+pytest = pytest --asyncio-mode=strict --cov=gelee --cov-report term-missing:skip-covered --cov-branch --log-format="%(levelname)s %(message)s"
+types = mypy gelee
 
 .PHONY: install
 install:
@@ -28,13 +28,13 @@ init:
 .PHONY: lint
 lint:
 	python setup.py check -ms
-	flake8 gelee/ test/
+	@echo Disabled $(flake8)
 	$(isort) --check-only --df
 	$(black) --check --diff
 
-.PHONY: mypy
-mypy:
-	mypy gelee
+.PHONY: types
+types:
+	$(types)
 
 .PHONY: test
 test: clean
@@ -46,7 +46,7 @@ testcov: test
 	@coverage html
 
 .PHONY: all
-all: lint mypy testcov
+all: lint types testcov
 
 .PHONY: clean
 clean:
