@@ -5,14 +5,14 @@
 ### Version
 
 ```console
-$ gelee version
-Gelee - a finer confiture. version 2021.10.24
+❯ gelee version
+Gelee - a finer confiture. version 2022.11.28
 ```
 
 ### General Help
 
 ```console
-$ gelee
+❯ gelee
 Usage: gelee [OPTIONS] COMMAND [ARGS]...
 
   Gelee - a finer confiture.
@@ -31,7 +31,7 @@ Commands:
 ### Cook Help
 
 ```console
-$ gelee cook --help
+❯ gelee cook --help
 Usage: gelee cook [OPTIONS] UNIQUE_TREES...
 
   Cook the gelee from the files in the tree below path.
@@ -53,7 +53,7 @@ Options:
 ### Cook
 
 ```
-$ gelee cook tests/fixtures
+❯ gelee cook tests/fixtures
 2021-10-23T18:47:18.979 INFO [gelee]: Starting validation visiting a forest with 1 tree
 2021-10-23T18:47:18.994 ERROR [gelee]: Failed validation for path tests/fixtures/invalid/toml/key_group_not_on_dedicated_line.toml with error: Key group not on a line by itself. (line 1 column 1 char 0)
 2021-10-23T18:47:18.994 ERROR [gelee]: Failed validation for path tests/fixtures/invalid/xml/empty.xml with error: ERROR: Empty XML file

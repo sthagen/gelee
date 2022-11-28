@@ -9,7 +9,7 @@ Validate configuration files against their format and maybe schema.
 **Usage**:
 
 ```console
-$ gelee [OPTIONS] COMMAND [ARGS]...
+❯ gelee [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -29,7 +29,7 @@ Cook the gelee from the files in the tree below path.
 **Usage**:
 
 ```console
-$ gelee cook [OPTIONS] UNIQUE_TREES...
+❯ gelee cook [OPTIONS] UNIQUE_TREES...
 ```
 
 **Arguments**:
@@ -49,7 +49,7 @@ Display the gelee version and exit
 **Usage**:
 
 ```console
-$ gelee version [OPTIONS]
+❯ gelee version [OPTIONS]
 ```
 
 **Options**:
