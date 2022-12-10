@@ -3,6 +3,8 @@ site_description: Gelee - a finer confiture.
 
 theme:
   name: 'material'
+  logo: assets/logo.png
+  favicon: images/favicon.ico
   features:
     - navigation.expand
     - toc.integrate
