@@ -1,8 +1,10 @@
-# gelee
+# Gelee
 
 Gelee - a finer confiture.
 
 [![license](https://img.shields.io/github/license/sthagen/solid-umbrella.svg?style=flat)](https://github.com/sthagen/solid-umbrella/blob/default/LICENSE)
+
+Third party dependencies are documented in the folder [third-party](third-party/README.md).
 
 [![version](https://img.shields.io/pypi/v/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![downloads](https://pepy.tech/badge/gelee/month)](https://pepy.tech/project/gelee)
