@@ -35,8 +35,8 @@ dependencies = [
     "lxml >= 4.9.2",
     "pyyaml >= 6.0",
     "toml >= 0.10.2",
-    "typer >= 0.7.0",
-    "xmlschema >= 2.2.3",
+    "typer >= 0.9.0",
+    "xmlschema >= 2.3.0",
 ]
 requires-python = ">=3.9"
 
