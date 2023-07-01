@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Validate configuration files against their format and maybe schema."""
 # [[[fill git_describe()]]]
 __version__ = '2022.11.28+parent.7cef30b3-dirty'
