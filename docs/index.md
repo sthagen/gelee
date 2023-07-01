@@ -11,6 +11,7 @@ Third party dependencies are documented in the folder [third-party](third-party/
 [![wheel](https://img.shields.io/pypi/wheel/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![supported-versions](https://img.shields.io/pypi/pyversions/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![supported-implementations](https://img.shields.io/pypi/implementation/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
+[![maintenance-status](https://img.shields.io/github/commit-activity/y/sthagen/gelee.svg?style=flat)](https://git.sr.ht/~sthagen/gelee/log)
 
 Configuration linter for typical formats.
 
