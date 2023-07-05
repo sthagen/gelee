@@ -1,7 +1,7 @@
 jmespath==1.0.1
 jsonschema==4.17.3
-lxml==4.9.2
+lxml==4.9.3
 pyyaml==6.0
 toml==0.10.2
 typer==0.9.0
-xmlschema==2.3.0
+xmlschema==2.3.1
