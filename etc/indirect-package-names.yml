@@ -3,4 +3,8 @@ packages:
 - attrs
 - click
 - elementpath
+- jsonschema-specifications
 - pyrsistent
+- referencing
+- rpds-py
+- typing-extensions
