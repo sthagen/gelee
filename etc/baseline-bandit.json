@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2023-01-02T18:54:33Z",
+  "generated_at": "2023-07-17T15:20:52Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 2,
@@ -72,6 +72,7 @@
     {
       "code": "12 import toml\n13 from lxml import etree  # type: ignore\n14 from yaml import load as load_yaml\n",
       "col_offset": 0,
+      "end_col_offset": 22,
       "filename": "gelee/gelee.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -84,13 +85,14 @@
       "line_range": [
         13
       ],
-      "more_info": "https://bandit.readthedocs.io/en/1.7.4/blacklists/blacklist_imports.html#b410-import-lxml",
+      "more_info": "https://bandit.readthedocs.io/en/1.7.5/blacklists/blacklist_imports.html#b410-import-lxml",
       "test_id": "B410",
       "test_name": "blacklist"
     },
     {
       "code": "55     try:\n56         doc = etree.parse(str(document_path), etree.XMLParser(encoding=ENCODING))\n57     except IOError as err:\n",
       "col_offset": 14,
+      "end_col_offset": 81,
       "filename": "gelee/gelee.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -103,7 +105,7 @@
       "line_range": [
         56
       ],
-      "more_info": "https://bandit.readthedocs.io/en/1.7.4/blacklists/blacklist_calls.html#b313-b320-xml-bad-etree",
+      "more_info": "https://bandit.readthedocs.io/en/1.7.5/blacklists/blacklist_calls.html#b313-b320-xml-bad-etree",
       "test_id": "B320",
       "test_name": "blacklist"
     }
