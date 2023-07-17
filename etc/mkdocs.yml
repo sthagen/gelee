@@ -1,5 +1,7 @@
 site_name: Gelee
 site_description: Gelee - a finer confiture.
+docs_dir: ../docs
+site_dir: ../site
 
 theme:
   name: 'material'
