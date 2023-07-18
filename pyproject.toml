@@ -30,9 +30,9 @@ keywords = [
     "validation",
 ]
 dependencies = [
-    "PyYAML >= 6.0",
+    "PyYAML >= 6.0.1",
     "jmespath >= 1.0.1",
-    "jsonschema >= 4.18.2",
+    "jsonschema >= 4.18.3",
     "lxml >= 4.9.3",
     "pyyaml >= 6.0",
     "toml >= 0.10.2",
