@@ -7,7 +7,7 @@ Gelee - a finer confiture.
 Third party dependencies are documented in the folder [third-party](docs/third-party/README.md).
 
 [![version](https://img.shields.io/pypi/v/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
-[![downloads](https://pepy.tech/badge/gelee/month)](https://pepy.tech/project/gelee)
+[![downloads](https://static.pepy.tech/badge/gelee/month)](https://pepy.tech/project/gelee)
 [![wheel](https://img.shields.io/pypi/wheel/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![supported-versions](https://img.shields.io/pypi/pyversions/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![supported-implementations](https://img.shields.io/pypi/implementation/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
