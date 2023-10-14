@@ -3,6 +3,7 @@
 Gelee - a finer confiture.
 
 [![license](https://img.shields.io/github/license/sthagen/solid-umbrella.svg?style=flat)](https://github.com/sthagen/solid-umbrella/blob/default/LICENSE)
+[Country of origin: Switzerland](https://git.sr.ht/~sthagen/gelee/tree/default/item/COUNTRY-OF-ORIGIN)
 
 Third party dependencies are documented in the folder [third-party](docs/third-party/README.md).
 
