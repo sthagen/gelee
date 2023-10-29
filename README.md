@@ -2,18 +2,15 @@
 
 Gelee - a finer confiture.
 
-[![license](https://img.shields.io/github/license/sthagen/solid-umbrella.svg?style=flat)](https://github.com/sthagen/solid-umbrella/blob/default/LICENSE) | 
-[Country of origin: Switzerland](https://git.sr.ht/~sthagen/gelee/tree/default/item/COUNTRY-OF-ORIGIN) | 
-[Export control classification number(ECCN): EAR99](https://git.sr.ht/~sthagen/gelee/tree/default/item/EXPORT-CONTROL-CLASSIFICATION-NUMBER)
+[![License](docs/badges/license-spdx-mit.svg)](https://git.sr.ht/~sthagen/gelee/tree/default/item/LICENSE)
+[![Country of Origin](docs/badges/country-of-origin-name-switzerland-neutral.svg)](https://git.sr.ht/~sthagen/gelee/tree/default/item/COUNTRY-OF-ORIGIN)
+[![Export Classification Control Number (ECCN)](docs/badges/export-control-classification-number_eccn-ear99-neutral.svg)](https://git.sr.ht/~sthagen/gelee/tree/default/item/EXPORT-CONTROL-CLASSIFICATION-NUMBER)
+[![Configuration](docs/badges/configuration-sbom.svg)](https://git.sr.ht/~sthagen/gelee/tree/default/item/docs/third-party/README.md)
 
-Third party dependencies are documented in the folder [third-party](docs/third-party/README.md).
-
-[![version](https://img.shields.io/pypi/v/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
-[![downloads](https://static.pepy.tech/badge/gelee/month)](https://pepy.tech/project/gelee)
-[![wheel](https://img.shields.io/pypi/wheel/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
-[![supported-versions](https://img.shields.io/pypi/pyversions/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
-[![supported-implementations](https://img.shields.io/pypi/implementation/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
-[![maintenance-status](https://img.shields.io/github/commit-activity/y/sthagen/gelee.svg?style=flat)](https://git.sr.ht/~sthagen/gelee/log)
+[![Version](https://img.shields.io/pypi/v/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
+[![Downloads](https://static.pepy.tech/badge/gelee/month)](https://pepy.tech/project/gelee)
+[![Supported Versions](https://img.shields.io/pypi/pyversions/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
+[![Maintenance Status](https://img.shields.io/github/commit-activity/y/sthagen/gelee.svg?style=flat)](https://git.sr.ht/~sthagen/gelee/log)
 
 Configuration linter for typical formats.
 
