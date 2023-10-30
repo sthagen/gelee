@@ -10,7 +10,7 @@ Gelee - a finer confiture.
 [![Version](https://img.shields.io/pypi/v/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![Downloads](https://static.pepy.tech/badge/gelee/month)](https://pepy.tech/project/gelee)
 [![Supported Versions](https://img.shields.io/pypi/pyversions/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
-[![Maintenance Status](docs/badges/downloads-per-month.svg)](https://git.sr.ht/~sthagen/gelee/log)
+[![Maintenance Status](docs/badges/commits-per-year.svg)](https://git.sr.ht/~sthagen/gelee/log)
 
 Configuration linter for typical formats.
 
