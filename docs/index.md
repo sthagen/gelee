@@ -8,7 +8,7 @@ Gelee - a finer confiture.
 [![Configuration](badges/configuration-sbom.svg)](third-party/index.html)
 
 [![Version](https://img.shields.io/pypi/v/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
-[![Downloads](https://static.pepy.tech/badge/gelee/month)](https://pepy.tech/project/gelee)
+[![Downloads](docs/badges/downloads-per-month.svg)](https://pepy.tech/project/gelee)
 [![Supported Versions](https://img.shields.io/pypi/pyversions/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![Maintenance Status](docs/badges/commits-per-year.svg)](https://git.sr.ht/~sthagen/gelee/log)
 
