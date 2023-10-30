@@ -1,8 +1,8 @@
 # Third Party Dependencies
 
 <!--[[[fill sbom_sha256()]]]-->
-The [SBOM in CycloneDX v1.4 JSON format](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json) with SHA256 checksum ([cca527cc ...](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json.sha256 "sha256:cca527cced46d0c96d7f13e4d0349339b1453174c7260020bc502ec9f3d19333")).
-<!--[[[end]]] (checksum: 374900cbe6c79a4593c41845b2404866)-->
+The [SBOM in CycloneDX v1.4 JSON format](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json) with SHA256 checksum ([aec8e3d7 ...](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json.sha256 "sha256:aec8e3d74efd0766c1c3116b1abe577d5bf3dee5986571cf61b232fc03b2b34d")).
+<!--[[[end]]] (checksum: f9fd6b4f6a4f8f98f8f0c7e7f2e36329)-->
 ## Licenses 
 
 JSON files with complete license info of: [direct dependencies](direct-dependency-licenses.json) | [all dependencies](all-dependency-licenses.json)
@@ -14,13 +14,13 @@ JSON files with complete license info of: [direct dependencies](direct-dependenc
 |:----------------------------------------------------------------|:-------------------------------------------------------|:------------|:-------------------|:-------------------------------------------------------------------------------------------------|
 | [PyYAML](https://pyyaml.org/)                                   | [6.0.1](https://pypi.org/project/PyYAML/6.0.1/)        | MIT License | Kirill Simonov     | YAML parser and emitter for Python                                                               |
 | [jmespath](https://github.com/jmespath/jmespath.py)             | [1.0.1](https://pypi.org/project/jmespath/1.0.1/)      | MIT License | James Saryerwinnie | JSON Matching Expressions                                                                        |
-| [jsonschema](https://github.com/python-jsonschema/jsonschema)   | [4.19.1](https://pypi.org/project/jsonschema/4.19.1/)  | MIT License | Julian Berman      | An implementation of JSON Schema validation for Python                                           |
+| [jsonschema](https://github.com/python-jsonschema/jsonschema)   | [4.19.2](https://pypi.org/project/jsonschema/4.19.2/)  | MIT License | Julian Berman      | An implementation of JSON Schema validation for Python                                           |
 | [lxml](https://lxml.de/)                                        | [4.9.3](https://pypi.org/project/lxml/4.9.3/)          | BSD License | lxml dev team      | Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API. |
 | [referencing](https://github.com/python-jsonschema/referencing) | [0.30.2](https://pypi.org/project/referencing/0.30.2/) | MIT License | Julian Berman      | JSON Referencing + Python                                                                        |
 | [toml](https://github.com/uiri/toml)                            | [0.10.2](https://pypi.org/project/toml/0.10.2/)        | MIT License | William Pearson    | Python Library for Tom's Obvious, Minimal Language                                               |
 | [typer](https://github.com/tiangolo/typer)                      | [0.9.0](https://pypi.org/project/typer/0.9.0/)         | MIT License | Sebastián Ramírez  | Typer, build great CLIs. Easy to code. Based on Python type hints.                               |
 | [xmlschema](https://github.com/sissaschool/xmlschema)           | [2.5.0](https://pypi.org/project/xmlschema/2.5.0/)     | MIT License | Davide Brunato     | An XML Schema validator and decoder                                                              |
-<!--[[[end]]] (checksum: 2e9f45e1d613740c0f1d2b90b8b3f2b3)-->
+<!--[[[end]]] (checksum: bff06ff531df55ecc90d615ce3d42c1d)-->
 
 ### Indirect Dependencies
 
@@ -50,7 +50,7 @@ Base graphviz file in dot format: [Trees of the direct dependencies](package-dep
 <!--[[[fill dependency_tree_console_text()]]]-->
 ````console
 jmespath==1.0.1
-jsonschema==4.19.1
+jsonschema==4.19.2
 ├── attrs [required: >=22.2.0, installed: 23.1.0]
 ├── jsonschema-specifications [required: >=2023.03.6, installed: 2023.6.1]
 │   └── referencing [required: >=0.28.0, installed: 0.30.2]
@@ -69,4 +69,4 @@ typer==0.9.0
 xmlschema==2.5.0
 └── elementpath [required: >=4.1.5,<5.0.0, installed: 4.1.5]
 ````
-<!--[[[end]]] (checksum: 9667e6b371a42a39f7e4a4fda3f8288e)-->
+<!--[[[end]]] (checksum: c7a9c0b75eb83a968e39ab32f06128de)-->
