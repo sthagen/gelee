@@ -1,6 +1,6 @@
 PyYAML==6.0.1
 jmespath==1.0.1
-jsonschema==4.19.1
+jsonschema==4.19.2
 lxml==4.9.3
 referencing==0.30.2
 toml==0.10.2
