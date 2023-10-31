@@ -7,7 +7,7 @@ Gelee - a finer confiture.
 [![Export Classification Control Number (ECCN)](badges/export-control-classification-number_eccn-ear99-neutral.svg)](https://git.sr.ht/~sthagen/gelee/tree/default/item/EXPORT-CONTROL-CLASSIFICATION-NUMBER)
 [![Configuration](badges/configuration-sbom.svg)](third-party/index.html)
 
-[![Version](https://img.shields.io/pypi/v/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
+[![Version](badges/latest-release.svg)](https://pypi.python.org/pypi/gelee/)
 [![Downloads](badges/downloads-per-month.svg)](https://pepy.tech/project/gelee)
 [![Supported Versions](https://img.shields.io/pypi/pyversions/gelee.svg?style=flat)](https://pypi.python.org/pypi/gelee/)
 [![Maintenance Status](badges/commits-per-year.svg)](https://git.sr.ht/~sthagen/gelee/log)
