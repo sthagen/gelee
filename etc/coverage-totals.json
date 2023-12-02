@@ -1,7 +1,7 @@
 {
   "gelee": {
-    "version": "7.3.2",
-    "timestamp": "2023-12-02T15:18:21.766303",
+    "coverage_tool_version": "7.3.2",
+    "timestamp": "2023-12-02 15:54:30 +00:00",
     "branch_coverage": true,
     "show_contexts": true,
     "covered_lines": 175,
@@ -13,6 +13,22 @@
     "num_branches": 70,
     "num_partial_branches": 2,
     "covered_branches": 54,
-    "missing_branches": 16
+    "missing_branches": 16,
+    "node_id": "c79891e5-aabf-3a83-95b9-588edcd8327f",
+    "nfiles": 3,
+    "files": [
+      "gelee/__init__.py",
+      "gelee/cli.py",
+      "gelee/gelee.py"
+    ],
+    "blake3": "550101cbe17c8837050ae3d3bea718460ed2459f1f1052506bdcabe0d6229bc3",
+    "blake2": "9dc0cfd03b7c4e9c7c793e15b7d7648b05779b9d0e4619f9e0a109f4e5ac96eb8c12611285a1b5327df0b8caa3082e31b7663d03c2735764b87e3bace725e5a7",
+    "sha512": "a06bef2101080bb45706c7837bc9b0cb11c537d52b91767e2688d975c164058db5511735730ccad7557613e7f914bed2b2a3da1da465ecb69bdb4c22faa09b2a",
+    "sha384": "3b66bccf157c187503fcb8c6419d38d010da1acccc9ae0a92d4b138c24526656171c1c5e2cfa42d8f937bb68ecf3b496",
+    "sha256": "b63f9234b98d922462333e64799cd23954ac2cbe3f89048f21ba72a9ced2bb69",
+    "sha1": "7e7b6682bec41e0dac3a50d8d475c49b16a6f1f7",
+    "md5": "6eee848fe9a7dc22365b971e2102d60d",
+    "python_version": "3.10.12",
+    "entropy": 4.743484
   }
 }
