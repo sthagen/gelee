@@ -1,0 +1,18 @@
+{
+  "gelee": {
+    "version": "7.3.2",
+    "timestamp": "2023-12-02T15:18:21.766303",
+    "branch_coverage": true,
+    "show_contexts": true,
+    "covered_lines": 175,
+    "num_statements": 207,
+    "percent_covered": 82.67148014440433,
+    "percent_covered_display": "82.67",
+    "missing_lines": 32,
+    "excluded_lines": 0,
+    "num_branches": 70,
+    "num_partial_branches": 2,
+    "covered_branches": 54,
+    "missing_branches": 16
+  }
+}
