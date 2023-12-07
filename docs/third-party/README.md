@@ -1,8 +1,8 @@
 # Third Party Dependencies
 
 <!--[[[fill sbom_sha256()]]]-->
-The [SBOM in CycloneDX v1.4 JSON format](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json) with SHA256 checksum ([ff4b301c ...](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json.sha256 "sha256:ff4b301c2958544a0c539f21ecb64da1db6bdf504669e25f6e6fca7c7370631a")).
-<!--[[[end]]] (checksum: 0d47e4c5b495ad61e160c4bdb9292b44)-->
+The [SBOM in CycloneDX v1.4 JSON format](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json) with SHA256 checksum ([a43e3425 ...](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json.sha256 "sha256:a43e34258bc2cd0781f142c34887ecbf9807e297632769ea4cedc7c473eca6c4")).
+<!--[[[end]]] (checksum: 3905a8f2e6b06b33288da446efc46683)-->
 ## Licenses 
 
 JSON files with complete license info of: [direct dependencies](direct-dependency-licenses.json) | [all dependencies](all-dependency-licenses.json)
@@ -16,11 +16,11 @@ JSON files with complete license info of: [direct dependencies](direct-dependenc
 | [jmespath](https://github.com/jmespath/jmespath.py)             | [1.0.1](https://pypi.org/project/jmespath/1.0.1/)      | MIT License | James Saryerwinnie | JSON Matching Expressions                                                                        |
 | [jsonschema](https://github.com/python-jsonschema/jsonschema)   | [4.20.0](https://pypi.org/project/jsonschema/4.20.0/)  | MIT License | Julian Berman      | An implementation of JSON Schema validation for Python                                           |
 | [lxml](https://lxml.de/)                                        | [4.9.3](https://pypi.org/project/lxml/4.9.3/)          | BSD License | lxml dev team      | Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API. |
-| [referencing](https://github.com/python-jsonschema/referencing) | [0.31.1](https://pypi.org/project/referencing/0.31.1/) | MIT License | Julian Berman      | JSON Referencing + Python                                                                        |
+| [referencing](https://github.com/python-jsonschema/referencing) | [0.32.0](https://pypi.org/project/referencing/0.32.0/) | MIT License | Julian Berman      | JSON Referencing + Python                                                                        |
 | [toml](https://github.com/uiri/toml)                            | [0.10.2](https://pypi.org/project/toml/0.10.2/)        | MIT License | William Pearson    | Python Library for Tom's Obvious, Minimal Language                                               |
 | [typer](https://github.com/tiangolo/typer)                      | [0.9.0](https://pypi.org/project/typer/0.9.0/)         | MIT License | Sebastián Ramírez  | Typer, build great CLIs. Easy to code. Based on Python type hints.                               |
 | [xmlschema](https://github.com/sissaschool/xmlschema)           | [2.5.0](https://pypi.org/project/xmlschema/2.5.0/)     | MIT License | Davide Brunato     | An XML Schema validator and decoder                                                              |
-<!--[[[end]]] (checksum: 3287fdfd6ddbeb35e4f8199c154aa32c)-->
+<!--[[[end]]] (checksum: 69e96e251c8c0580b568d8270035a667)-->
 
 ### Indirect Dependencies
 
@@ -53,10 +53,10 @@ jmespath==1.0.1
 jsonschema==4.20.0
 ├── attrs [required: >=22.2.0, installed: 23.1.0]
 ├── jsonschema-specifications [required: >=2023.03.6, installed: 2023.6.1]
-│   └── referencing [required: >=0.28.0, installed: 0.31.1]
+│   └── referencing [required: >=0.28.0, installed: 0.32.0]
 │       ├── attrs [required: >=22.2.0, installed: 23.1.0]
 │       └── rpds-py [required: >=0.7.0, installed: 0.8.11]
-├── referencing [required: >=0.28.4, installed: 0.31.1]
+├── referencing [required: >=0.28.4, installed: 0.32.0]
 │   ├── attrs [required: >=22.2.0, installed: 23.1.0]
 │   └── rpds-py [required: >=0.7.0, installed: 0.8.11]
 └── rpds-py [required: >=0.7.1, installed: 0.8.11]
@@ -69,4 +69,4 @@ typer==0.9.0
 xmlschema==2.5.0
 └── elementpath [required: >=4.1.5,<5.0.0, installed: 4.1.5]
 ````
-<!--[[[end]]] (checksum: ae31e762978b08ffe73741afcbbbdea2)-->
+<!--[[[end]]] (checksum: a1e87896e1e2ecf1399ae55f652865db)-->
