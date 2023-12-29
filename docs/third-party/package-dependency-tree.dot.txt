@@ -12,7 +12,7 @@ digraph {
 	jsonschema -> attrs [label=">=22.2.0"]
 	jsonschema -> referencing [label=">=0.28.4"]
 	jsonschema [label="jsonschema\n4.20.0"]
-	lxml [label="lxml\n4.9.3"]
+	lxml [label="lxml\n5.0.0"]
 	pyyaml [label="PyYAML\n6.0.1"]
 	referencing -> "rpds-py" [label=">=0.7.0"]
 	referencing -> attrs [label=">=22.2.0"]

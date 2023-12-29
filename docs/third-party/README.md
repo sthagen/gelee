@@ -1,8 +1,8 @@
 # Third Party Dependencies
 
 <!--[[[fill sbom_sha256()]]]-->
-The [SBOM in CycloneDX v1.4 JSON format](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json) with SHA256 checksum ([58e79fce ...](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json.sha256 "sha256:58e79fce33ff8e8da2a68fb2998051e7ffa32c9beeb2c57a26cb29a2895aa935")).
-<!--[[[end]]] (checksum: fd90b84e8cf0ac525c7f4403a4e00f5e)-->
+The [SBOM in CycloneDX v1.4 JSON format](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json) with SHA256 checksum ([9f942f0d ...](https://git.sr.ht/~sthagen/gelee/blob/default/etc/sbom/cdx.json.sha256 "sha256:9f942f0df22c5f0b2ad4ce9d0e3e3b0f7cb98c0c5ecb36104201adc58ed7b5bd")).
+<!--[[[end]]] (checksum: cc20f4a2e972da9ea89db465e5e1f939)-->
 ## Licenses 
 
 JSON files with complete license info of: [direct dependencies](direct-dependency-licenses.json) | [all dependencies](all-dependency-licenses.json)
@@ -15,12 +15,12 @@ JSON files with complete license info of: [direct dependencies](direct-dependenc
 | [PyYAML](https://pyyaml.org/)                                   | [6.0.1](https://pypi.org/project/PyYAML/6.0.1/)        | MIT License | Kirill Simonov     | YAML parser and emitter for Python                                                               |
 | [jmespath](https://github.com/jmespath/jmespath.py)             | [1.0.1](https://pypi.org/project/jmespath/1.0.1/)      | MIT License | James Saryerwinnie | JSON Matching Expressions                                                                        |
 | [jsonschema](https://github.com/python-jsonschema/jsonschema)   | [4.20.0](https://pypi.org/project/jsonschema/4.20.0/)  | MIT License | Julian Berman      | An implementation of JSON Schema validation for Python                                           |
-| [lxml](https://lxml.de/)                                        | [4.9.3](https://pypi.org/project/lxml/4.9.3/)          | BSD License | lxml dev team      | Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API. |
+| [lxml](https://lxml.de/)                                        | [5.0.0](https://pypi.org/project/lxml/5.0.0/)          | BSD License | lxml dev team      | Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API. |
 | [referencing](https://github.com/python-jsonschema/referencing) | [0.32.0](https://pypi.org/project/referencing/0.32.0/) | MIT License | Julian Berman      | JSON Referencing + Python                                                                        |
 | [toml](https://github.com/uiri/toml)                            | [0.10.2](https://pypi.org/project/toml/0.10.2/)        | MIT License | William Pearson    | Python Library for Tom's Obvious, Minimal Language                                               |
 | [typer](https://github.com/tiangolo/typer)                      | [0.9.0](https://pypi.org/project/typer/0.9.0/)         | MIT License | Sebastián Ramírez  | Typer, build great CLIs. Easy to code. Based on Python type hints.                               |
 | [xmlschema](https://github.com/sissaschool/xmlschema)           | [2.5.1](https://pypi.org/project/xmlschema/2.5.1/)     | MIT License | Davide Brunato     | An XML Schema validator and decoder                                                              |
-<!--[[[end]]] (checksum: c0e77c9867910c4959b2673ed92a6558)-->
+<!--[[[end]]] (checksum: 33e68cfaab3e34c49691cedb74ea1da3)-->
 
 ### Indirect Dependencies
 
@@ -60,7 +60,7 @@ jsonschema==4.20.0
 │   ├── attrs [required: >=22.2.0, installed: 23.1.0]
 │   └── rpds-py [required: >=0.7.0, installed: 0.8.11]
 └── rpds-py [required: >=0.7.1, installed: 0.8.11]
-lxml==4.9.3
+lxml==5.0.0
 PyYAML==6.0.1
 toml==0.10.2
 typer==0.9.0
@@ -69,4 +69,4 @@ typer==0.9.0
 xmlschema==2.5.1
 └── elementpath [required: >=4.1.5,<5.0.0, installed: 4.1.5]
 ````
-<!--[[[end]]] (checksum: 8640feb15ff7a610815a641c5e1a2b9a)-->
+<!--[[[end]]] (checksum: 432cd188a61e745481332079580d710a)-->
