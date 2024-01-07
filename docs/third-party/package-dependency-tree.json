@@ -83,8 +83,8 @@
     {
         "key": "lxml",
         "package_name": "lxml",
-        "installed_version": "5.0.0",
-        "required_version": "5.0.0",
+        "installed_version": "5.0.1",
+        "required_version": "5.0.1",
         "dependencies": []
     },
     {
@@ -126,8 +126,8 @@
     {
         "key": "xmlschema",
         "package_name": "xmlschema",
-        "installed_version": "2.5.1",
-        "required_version": "2.5.1",
+        "installed_version": "3.0.0",
+        "required_version": "3.0.0",
         "dependencies": [
             {
                 "key": "elementpath",
