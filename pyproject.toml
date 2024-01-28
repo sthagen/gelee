@@ -7,6 +7,7 @@ name = "gelee"
 version = "2022.11.28"
 description = "Gelee - a finer confiture."
 readme = "README.md"
+license = {file = "LICENSE"}
 authors = [{ name = "Stefan Hagen", email = "stefan@hagen.link" }]
 maintainers = [{ name = "Stefan Hagen", email = "stefan@hagen.link" }]
 classifiers = [
