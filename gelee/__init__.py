@@ -1,4 +1,5 @@
 """Validate configuration files against their format and maybe schema."""
+
 # [[[fill git_describe()]]]
 __version__ = '2022.11.28+parent.7cef30b3-dirty'
 # [[[end]]] (checksum: 292b24b2ea3ee44d0bfa30684335287e)
