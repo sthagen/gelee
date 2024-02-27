@@ -20,6 +20,7 @@
       "last_month": -1,
       "last_week": -1
     },
+    "dynamic": null,
     "home_page": "https://git.sr.ht/~sthagen/gelee",
     "keywords": "csv,developer-tools,ini-files,json,lint,toml,xml,yaml,validation",
     "license": "",
@@ -36,6 +37,7 @@
       "Source Code": "https://git.sr.ht/~sthagen/gelee",
       "Test Coverage": "https://codes.dilettant.life/coverage/gelee/"
     },
+    "provides_extra": null,
     "release_url": "https://pypi.org/project/gelee/2022.11.28/",
     "requires_dist": [
       "jmespath (>=1.0.1)",
